@@ -27,7 +27,7 @@ const OurPresence = () => {
                     anticipatePin: 1,
                     invalidateOnRefresh: true,
                 },
-            }).to(overlayRef.current, { xPercent: 0, ease: "none", opacity: 100 }, 0);
+            }).to(overlayRef.current, { xPercent: 0, ease: "none", opacity: 1 , duration: 3}, 2);
         }, sectionRef);
 
         return () => ctx.revert();

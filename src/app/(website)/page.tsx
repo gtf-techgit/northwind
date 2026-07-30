@@ -6,9 +6,8 @@ import Instagram from '@/website/components/pages/home/Instagram'
 import OurPresence from '@/website/components/pages/home/OurPresence'
 import OurProjects from '@/website/components/pages/home/OurProjects'
 import Overview from '@/website/components/pages/home/Overview'
-import Project from '@/website/components/pages/home/Project'
+import ProjectValuesSequence from '@/website/components/pages/home/ProjectValues/ProjectValuesSequence'
 import Testimonials from '@/website/components/pages/home/Testimonials'
-import Values from '@/website/components/pages/home/Values'
 
 const page = () => {
   return (
@@ -16,8 +15,7 @@ const page = () => {
       <HeroSection/>
       <Overview/>
       <OurProjects/>
-      <Project/>
-      <Values/>
+      <ProjectValuesSequence/>      
       <OurPresence/>
       <Awards/>
       <Testimonials/>

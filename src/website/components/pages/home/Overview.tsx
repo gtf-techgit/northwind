@@ -48,8 +48,9 @@ const Overview = () => {
             tl.to(
                 topContentRef.current,
                 {
-                    y: -distance,
+                     y: '-150%',
                     ease: "none",
+                    duration: 2,
                 },
                 0
             );
@@ -59,6 +60,7 @@ const Overview = () => {
                 {
                     y: -distance,
                     ease: "none",
+                    duration: 3,
                 },
                 0
             );

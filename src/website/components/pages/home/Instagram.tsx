@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import SectionHeader from "../../ui/SectionHeader";
+import ZoomOut from "../../ui/ZoomOut";
 
 const posts = [
   { image: "/pages/home/instagram/1.png" },
@@ -63,7 +64,7 @@ const Instagram = () => {
   const progress = ((step % total) + total) % total;
 
   return (
-    <section className="relative w-full section-padding min-h-screen overflow-hidden">
+    <section className="relative w-full section-padding md:min-h-screen overflow-hidden">
       <div className="container-custom">
         <SectionHeader
           className="max-w-lg mx-auto text-center"
@@ -95,6 +96,9 @@ const Instagram = () => {
                     isEdge ? "max-w-28 flex-none" : "max-w-72 flex-1"
                   }`}
                 >
+                   <ZoomOut
+                  className="absolute inset-0 h-full w-full"
+                >
                   <Image
                     src={image}
                     alt="Instagram post"
@@ -103,6 +107,7 @@ const Instagram = () => {
                     style={{ objectPosition: style.objectPosition }}
                     priority={offset === 0}
                   />
+                  </ZoomOut>
                 </motion.div>
               );
             })}

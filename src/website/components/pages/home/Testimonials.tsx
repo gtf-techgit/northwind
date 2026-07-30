@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import SectionHeader from "../../ui/SectionHeader";
+import ZoomOut from "../../ui/ZoomOut";
 
 const testimonials = [
   { id: 1, image: "/pages/home/testimonials/2.png", video: "/pages/home/hero/banner.mp4", name: "Rohan & Priya" },
@@ -56,12 +57,16 @@ const Testimonials = () => {
               className={`pointer-events-none absolute top-1/2 hidden h-[70%] w-[18%] -translate-y-1/2 overflow-hidden rounded-lg-custom sm:block ${isLeft ? "left-0" : "right-0"
                 }`}
             >
+                <ZoomOut
+                    className="absolute inset-0 h-full w-full"
+                  >
               <Image
                 src={slide.image}
                 alt=""
                 fill
                 className="scale-110 object-cover blur-[1px]"
               />
+              </ZoomOut>
               <div
                 className={`absolute inset-0 ${isLeft
                     ? "bg-linear-to-r from-background/60  to-background/60"

@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "../../ui/SectionHeader";
 import Button from "../../ui/Button";
+import ZoomOut from "../../ui/ZoomOut";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Tab = "blogs" | "media";
 
@@ -25,6 +30,13 @@ const blogs = [
   {
     id: 3,
     image: "/pages/home/blogs/3.png",
+    title: "Lorem Ipsum is simply dummy text.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+  },
+    {
+    id: 4,
+    image: "/pages/home/blogs/2.png",
     title: "Lorem Ipsum is simply dummy text.",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
@@ -53,6 +65,14 @@ const media = [
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
   },
+  {
+    id: 4,
+    image: "/pages/home/blogs/1.png",
+    title: "Lorem Ipsum is simply dummy text.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+  },
+  
 ];
 
 const tabs: { id: Tab; label: string }[] = [
@@ -64,8 +84,46 @@ const Blogs = () => {
   const [activeTab, setActiveTab] = useState<Tab>("blogs");
   const items = activeTab === "blogs" ? blogs : media;
 
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    const getScrollDistance = () =>
+      Math.max(0, track.scrollWidth - track.clientWidth);
+
+    const ctx = gsap.context(() => {
+      gsap.to(track, {
+        x: () => -getScrollDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${getScrollDistance()}`,
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    gsap.set(trackRef.current, { x: 0 });
+    ScrollTrigger.refresh();
+  }, [activeTab]);
+
   return (
-    <section className="relative w-full min-h-screen section-toppadding">
+    <section
+      ref={sectionRef}
+      className="relative w-full md:min-h-screen section-toppadding overflow-hidden"
+    >
       <div className="container-custom">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeader
@@ -91,26 +149,36 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-3">
-          {items.map((item) => (
-            <div key={item.id} className="group">
-              <div className="relative aspect-4/3 overflow-hidden rounded-xl-custom">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  unoptimized
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+        <div className="mt-10 overflow-hidden">
+          <div ref={trackRef} className="flex gap-8 will-change-transform">
+            {items.map((item, index) => (
+              <div
+                key={item.id}
+                className="group w-[80%] shrink-0 sm:w-[55%] md:w-[calc(33.333%-1.334rem)]"
+              >
+                <div className="relative aspect-4/3 overflow-hidden rounded-xl-custom">
+                  <ZoomOut
+                    className="absolute inset-0 h-full w-full"
+                    delay={index * 0.15}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      unoptimized
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </ZoomOut>
+                </div>
+                <h3 className="mt-6  text-xl font-semibold font-body text-primary">
+                  {item.title}
+                </h3>
+                <p className="mt-3 line-clamp-2 font-body text-sm leading-relaxed text-muted md:text-base">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="mt-6  text-xl font-semibold font-body text-primary">
-                {item.title}
-              </h3>
-              <p className="mt-3 line-clamp-2 font-body text-sm leading-relaxed text-muted md:text-base">
-                {item.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <div className="w-full flex justify-center mt-5">
          <Button className="mt-6 font-semibold cursor-pointer">Know More</Button>

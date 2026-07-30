@@ -1,9 +1,87 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+const TOTAL_FRAMES = 240;
+const FPS = 30;
+
+const getFramePath = (frame: number) =>
+  `/pages/home/awards/frames/${String(frame).padStart(3, "0")}.png`;
 
 const Awards = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const frameIndexRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const animationRef = useRef<number | null>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    imagesRef.current = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
+      const img = new Image();
+      img.src = getFramePath(i + 1);
+      return img;
+    });
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) {
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+      return;
+    }
+
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+
+    const frameDuration = 1000 / FPS;
+
+    const draw = (time: number) => {
+      if (time - lastTimeRef.current >= frameDuration) {
+        lastTimeRef.current = time;
+        const img = imagesRef.current[frameIndexRef.current];
+        if (img?.complete) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+        frameIndexRef.current = (frameIndexRef.current + 1) % TOTAL_FRAMES;
+      }
+      animationRef.current = requestAnimationFrame(draw);
+    };
+
+    animationRef.current = requestAnimationFrame(draw);
+
+    return () => {
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+    };
+  }, [isInView]);
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-primary section-padding">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen w-full overflow-hidden bg-primary section-padding"
+    >
       <div className="container-custom relative flex h-full min-h-[calc(100vh-160px)] items-center">
         <div className="grid w-full items-center gap-y-16 md:grid-cols-12">
           {/* Left content */}
@@ -46,14 +124,15 @@ const Awards = () => {
                 </p>
               </div>
 
-              {/* Trophy */}
-              <div className="relative z-10  w-full max-w-100 ">
-                <Image
-                  src={"/pages/home/awards/award.png"}
-                  alt="Award"
-                  width={400}
-                  height={600}
-                  className="object-contain w-full h-auto"
+              {/* Trophy frame sequence */}
+              <div className="relative z-10 w-full max-w-85 left-24">
+                <canvas
+                  ref={canvasRef}
+                  width={720}
+                  height={1280}
+                  className="h-auto w-full object-contain"
+                  aria-label="Award"
+                  role="img"
                 />
               </div>
             </div>
