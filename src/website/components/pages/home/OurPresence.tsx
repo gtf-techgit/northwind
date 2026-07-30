@@ -6,10 +6,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "../../ui/SectionHeader";
 import Image from "next/image";
 import PresenceOverlay from "./PresenceOverlay";
+import type { OurPresenceData } from "@/website/types/home";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const OurPresence = () => {
+interface OurPresenceProps {
+    data: OurPresenceData;
+}
+
+const OurPresence = ({ data }: OurPresenceProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -41,11 +46,33 @@ const OurPresence = () => {
             <div className="container-custom">
                 <SectionHeader
                     className="max-w-150 mx-auto text-center"
-                    heading="Our presence"
-                    paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's."
+                    heading={data.heading}
+                    paragraph={data.paragraph}
                 />
 
-                <div className="absolute left-1/2 -translate-x-1/2 bottom-10">
+                {/* Mobile layout: SectionHeader -> Image -> Text, stacked */}
+                <div className="md:hidden flex flex-col items-center my-16">
+                    <Image
+                        src={data.mapImage}
+                        alt="Northwind estate illustration"
+                        width={350}
+                        height={400}
+                        className="object-contain h-auto mx-auto object-bottom"
+                    />
+
+                    <div className="mt-8 w-72 max-w-full text-center">
+                        <h3 className="font-heading text-4xl text-primary">
+                            {data.areaOperations.heading}
+                        </h3>
+
+                        <p className="mt-4 text-body text-secondary leading-relaxed">
+                            {data.areaOperations.paragraph}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Desktop layout: unchanged */}
+                <div className="hidden md:block absolute left-1/2 -translate-x-1/2 bottom-10">
                     <div className="relative">
                         <div className="arrow ">
                             <div className="absolute left-[-93%] top-[40%] -translate-y-1/2">
@@ -55,7 +82,7 @@ const OurPresence = () => {
                                     height="40"
                                     viewBox="0 0 281 40"
                                     fill="none"
-                                    className='relative left-20'
+                                    className='hidden md:block relative left-20'
                                 >
                                     <path
                                         opacity="0.6"
@@ -67,19 +94,17 @@ const OurPresence = () => {
                                 {/* Text */}
                                 <div className="absolute top-16 left-0 -translate-x-1/4 w-72 text-center">
                                     <h3 className="font-heading text-4xl text-primary">
-                                        Area of Operations
+                                        {data.areaOperations.heading}
                                     </h3>
 
                                     <p className="mt-4 text-body text-secondary leading-relaxed">
-                                        We have projects in Greater Noida,
-                                        <br />
-                                        Delhi &amp; Dehradun
+                                        {data.areaOperations.paragraph}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <Image
-                            src="/pages/home/presence/map.png"
+                            src={data.mapImage}
                             alt="Northwind estate illustration"
                             width={400}
                             height={500}
@@ -89,7 +114,7 @@ const OurPresence = () => {
                 </div>
             </div>
 
-            <PresenceOverlay ref={overlayRef} />
+            <PresenceOverlay ref={overlayRef} areas={data.areas} />
         </section>
     );
 };

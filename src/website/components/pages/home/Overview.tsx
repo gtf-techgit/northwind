@@ -7,17 +7,22 @@ import Button from "@/website/components/ui/Button";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Ticker from "@/website/components/ui/Ticker";
+import type { OverviewData } from "@/website/types/home";
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface OverviewProps {
+    data: OverviewData;
+}
 
-const stats = [
-    { value: "100%", label: "Customer-Centric Planning" },
-    { value: "20+", label: "Years of Legacy" },
-    { value: "10 Lakh+", label: "Sq. Ft. Delivered" },
-];
+const parseStatValue = (value: string) => {
+    const match = value.match(/^(\d+)(.*)$/);
+    if (!match) return { number: 0, suffix: value };
+    return { number: Number(match[1]), suffix: match[2] };
+};
 
-const Overview = () => {
+const Overview = ({ data }: OverviewProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const topContentRef = useRef<HTMLDivElement>(null);
     const bottomContentRef = useRef<HTMLDivElement>(null);
@@ -77,19 +82,15 @@ const Overview = () => {
                 >
                     <div className="md:col-span-7">
                         <Heading className="max-w-xl">
-                            North Wind Estates where
-                            every breeze brings change
+                            {data.heading}
                         </Heading>
                     </div>
 
                     <div className="md:col-span-5 md:pt-2">
                         <Paragraph>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry&apos;s standard dummy
-                            text ever since 1500, when an unknown printer took a galley of
-                            type.
+                            {data.paragraph}
                         </Paragraph>
-                        <Button className="mt-6 font-semibold cursor-pointer">Know More</Button>
+                        <Button className="mt-6 font-semibold cursor-pointer">{data.buttonText}</Button>
                     </div>
                 </div>
 
@@ -98,21 +99,24 @@ const Overview = () => {
                         className="relative"
                     >
                         <div className="grid grid-cols-3 divide-x divide-border">
-                            {stats.map((stat) => (
-                                <div
-                                    key={stat.label}
-                                    className="px-4 text-center first:pl-0 md:px-8"
-                                >
-                                    <p
-                                        className="font-heading text-[42px] text-primary"
+                            {data.stats.map((stat) => {
+                                const { number, suffix } = parseStatValue(stat.value);
+                                return (
+                                    <div
+                                        key={stat.label}
+                                        className="px-4 text-center first:pl-0 md:px-8"
                                     >
-                                        {stat.value}
-                                    </p>
-                                    <p className="mt-2 text-[16px]  text-muted md:text-sm">
-                                        {stat.label}
-                                    </p>
-                                </div>
-                            ))}
+                                        <Ticker
+                                            value={number}
+                                            suffix={suffix}
+                                            className="font-heading text-[28px] md:text-[42px] text-primary"
+                                        />
+                                        <p className="mt-2 text-[12px] md:text-[16px]  text-muted ">
+                                            {stat.label}
+                                        </p>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -120,7 +124,7 @@ const Overview = () => {
                         className="w-full  mt-10 "
                     >
                         <Image
-                            src="/pages/home/overview/art.png"
+                            src={data.image}
                             alt="Northwind estate illustration"
                             width={900}
                             height={800}

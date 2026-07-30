@@ -7,82 +7,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "../../ui/SectionHeader";
 import Button from "../../ui/Button";
 import ZoomOut from "../../ui/ZoomOut";
+import type { BlogsData, BlogTab } from "@/website/types/home";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Tab = "blogs" | "media";
+interface BlogsProps {
+  data: BlogsData;
+}
 
-const blogs = [
-  {
-    id: 1,
-    image: "/pages/home/blogs/1.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-  {
-    id: 2,
-    image: "/pages/home/blogs/2.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-  {
-    id: 3,
-    image: "/pages/home/blogs/3.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-    {
-    id: 4,
-    image: "/pages/home/blogs/2.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-];
-
-const media = [
-  {
-    id: 1,
-    image: "/pages/home/blogs/2.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-  {
-    id: 2,
-    image: "/pages/home/blogs/3.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-  {
-    id: 3,
-    image: "/pages/home/blogs/1.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-  {
-    id: 4,
-    image: "/pages/home/blogs/1.png",
-    title: "Lorem Ipsum is simply dummy text.",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  },
-  
-];
-
-const tabs: { id: Tab; label: string }[] = [
-  { id: "blogs", label: "Blogs" },
-  { id: "media", label: "Media" },
-];
-
-const Blogs = () => {
-  const [activeTab, setActiveTab] = useState<Tab>("blogs");
-  const items = activeTab === "blogs" ? blogs : media;
+const Blogs = ({ data }: BlogsProps) => {
+  const [activeTab, setActiveTab] = useState<BlogTab>("blogs");
+  const items = activeTab === "blogs" ? data.blogs : data.media;
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -128,12 +63,12 @@ const Blogs = () => {
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeader
             className="max-w-lg"
-            heading="Explore Our Blogs"
-            paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard."
+            heading={data.heading}
+            paragraph={data.paragraph}
           />
 
           <div className="inline-flex shrink-0 items-center gap-1 self-start rounded-full bg-primary/5 p-1 md:self-auto">
-            {tabs.map((tab) => (
+            {data.tabs.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
@@ -181,7 +116,7 @@ const Blogs = () => {
           </div>
         </div>
         <div className="w-full flex justify-center mt-5">
-         <Button className="mt-6 font-semibold cursor-pointer">Know More</Button>
+         <Button className="mt-6 font-semibold cursor-pointer">{data.buttonText}</Button>
          </div>
       </div>
     </section>

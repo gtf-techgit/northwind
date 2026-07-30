@@ -8,20 +8,21 @@ import OurProjects from '@/website/components/pages/home/OurProjects'
 import Overview from '@/website/components/pages/home/Overview'
 import ProjectValuesSequence from '@/website/components/pages/home/ProjectValues/ProjectValuesSequence'
 import Testimonials from '@/website/components/pages/home/Testimonials'
+import { heroSectionData, overviewData, ourProjectsData, projectValuesData,ourPresenceData,awardsData,testimonialsData,blogsData,instagramData,contactData,} from '@/website/lib/data/home'
 
 const page = () => {
   return (
     <main>
-      <HeroSection/>
-      <Overview/>
-      <OurProjects/>
-      <ProjectValuesSequence/>      
-      <OurPresence/>
-      <Awards/>
-      <Testimonials/>
-      <Blogs/>
-      <Instagram/>
-      <Contact/>
+      <HeroSection data={heroSectionData}/>
+      <Overview data={overviewData}/>
+      <OurProjects data={ourProjectsData}/>
+      <ProjectValuesSequence data={projectValuesData}/>
+      <OurPresence data={ourPresenceData}/>
+      <Awards data={awardsData}/>
+      <Testimonials data={testimonialsData}/>
+      <Blogs data={blogsData}/>
+      <Instagram data={instagramData}/>
+      <Contact data={contactData}/>
     </main>
   )
 }

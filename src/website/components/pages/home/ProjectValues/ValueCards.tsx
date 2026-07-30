@@ -2,14 +2,15 @@
 
 import { forwardRef } from "react";
 import { IoLeafOutline } from "react-icons/io5";
-import { valueCards } from "./valuesData";
+import type { ValueCard } from "@/website/types/home";
 
 interface ValueCardsProps {
   cardRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
+  valueCards: ValueCard[];
 }
 
 const ValueCards = forwardRef<HTMLDivElement, ValueCardsProps>(
-  ({ cardRefs }, ref) => {
+  ({ cardRefs, valueCards }, ref) => {
     return (
       <div
         ref={ref}

@@ -5,10 +5,15 @@ import SectionHeader from '../../ui/SectionHeader'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import type { OurProjectsData } from '@/website/types/home'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const OurProjects = () => {
+interface OurProjectsProps {
+  data: OurProjectsData
+}
+
+const OurProjects = ({ data }: OurProjectsProps) => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const bgImageRef = useRef<HTMLDivElement>(null)
@@ -47,7 +52,7 @@ const OurProjects = () => {
     <section ref={sectionRef} className="w-full h-screen section-padding flex flex-col justify-center items-center relative">
         <div ref={bgImageRef} className="absolute inset-0 flex justify-center items-center">
             <Image
-            src={"/pages/home/projects/bgpattern.png"}
+            src={data.bgImage}
             alt='bgpattern'
             width={400}
             height={400}
@@ -57,9 +62,9 @@ const OurProjects = () => {
         <div ref={contentRef}>
             <SectionHeader
                 className="max-w-3xl mx-auto text-center"
-                heading="Our Projects That Inspire Better Living"
-                paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since 1966,"
-                buttonText="Know More"
+                heading={data.heading}
+                paragraph={data.paragraph}
+                buttonText={data.buttonText}
             />
         </div>
     </section>

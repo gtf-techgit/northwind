@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import type { AwardsData } from "@/website/types/home";
 
 const TOTAL_FRAMES = 240;
 const FPS = 30;
@@ -9,7 +10,11 @@ const FPS = 30;
 const getFramePath = (frame: number) =>
   `/pages/home/awards/frames/${String(frame).padStart(3, "0")}.png`;
 
-const Awards = () => {
+interface AwardsProps {
+  data: AwardsData;
+}
+
+const Awards = ({ data }: AwardsProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
@@ -87,14 +92,14 @@ const Awards = () => {
           {/* Left content */}
           <div className="md:col-span-4">
             <h2 className="max-w-sm font-heading text-4xl leading-[1.15] text-brand md:text-[42px]">
-              Awards That Reflect Our Commitment
+              {data.heading}
             </h2>
 
-            <Link href={"/"}>  <button
+            <Link href={data.buttonHref}>  <button
               type="button"
               className="mt-8 inline-flex items-center justify-center rounded-full border border-white/15 bg-[#B9A1481A] px-8 py-3 font-body text-sm tracking-wide text-brand backdrop-blur-sm transition-colors cursor-pointer"
             >
-              Know More
+              {data.buttonText}
             </button>
             </Link>
           </div>
@@ -102,30 +107,10 @@ const Awards = () => {
           <div className="absolute left-1/2 top-1/2 h-95 w-95 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#14694D]/60 blur-3xl" />
           {/* Trophy + glass card */}
           <div className="relative md:col-span-8">
-            <div className="relative flex min-h-105 items-center">
-
-
-              {/* Glass card */}
-              <div
-                className="absolute right-0 top-1/2 w-[70%] -translate-y-1/2 rounded-[28px] border border-white/25 px-10 py-14 md:pl-32"
-                // style={{
-                //   background:
-                //     "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.06) 100%)",
-                //   backdropFilter: "blur(72px)",
-                // }}
-              >
-                <h3 className="font-heading text-2xl text-brand">
-                  Recognized For Excellence
-                </h3>
-                <p className="mt-3 max-w-sm font-body text-sm leading-relaxed text-white/70">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua.
-                </p>
-              </div>
+            <div className="relative flex flex-col items-center gap-8 md:min-h-105 md:flex-row">
 
               {/* Trophy frame sequence */}
-              <div className="relative z-10 w-full max-w-85 left-24">
+              <div className="relative z-10 w-full max-w-50 md:max-w-85 md:left-24">
                 <canvas
                   ref={canvasRef}
                   width={720}
@@ -134,6 +119,18 @@ const Awards = () => {
                   aria-label="Award"
                   role="img"
                 />
+              </div>
+
+              {/* Glass card */}
+              <div
+                className="relative w-full rounded-[28px] border border-white/25 px-8 py-10 md:absolute md:right-0 md:top-1/2 md:w-[70%] md:-translate-y-1/2 md:px-10 md:py-14 md:pl-32"
+              >
+                <h3 className="font-heading text-2xl text-brand">
+                  {data.cardHeading}
+                </h3>
+                <p className="mt-3 max-w-sm font-body text-sm leading-relaxed text-white/70">
+                  {data.cardParagraph}
+                </p>
               </div>
             </div>
           </div>

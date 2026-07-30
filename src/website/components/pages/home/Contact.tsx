@@ -1,12 +1,17 @@
 import Image from "next/image";
 import SectionHeader from "../../ui/SectionHeader";
 import Button from "../../ui/Button";
+import type { ContactData } from "@/website/types/home";
 
-const Contact = () => {
+interface ContactProps {
+  data: ContactData;
+}
+
+const Contact = ({ data }: ContactProps) => {
   return (
     <section className="relative w-full min-h-screen section-padding overflow-hidden">
       <Image
-        src="/pages/home/contact/bgpattern.png"
+        src={data.bgImage}
         alt=""
         fill
         priority
@@ -23,8 +28,8 @@ const Contact = () => {
       <div className="container-custom relative z-10">
         <SectionHeader
           className="max-w-2xl mx-auto text-center"
-          heading="Get in Touch"
-          paragraph="Have questions about our projects, pricing, or site visits? Get in touch—we're here to help."
+          heading={data.heading}
+          paragraph={data.paragraph}
           headingClassName="text-secondary!"
           paragraphClassName="text-accent!"
         />

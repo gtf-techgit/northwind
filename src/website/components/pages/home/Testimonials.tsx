@@ -5,20 +5,18 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import SectionHeader from "../../ui/SectionHeader";
 import ZoomOut from "../../ui/ZoomOut";
-
-const testimonials = [
-  { id: 1, image: "/pages/home/testimonials/2.png", video: "/pages/home/hero/banner.mp4", name: "Rohan & Priya" },
-  { id: 2, image: "/pages/home/testimonials/1.png", video: "/pages/home/hero/banner.mp4", name: "Ananya Verma" },
-  { id: 3, image: "/pages/home/testimonials/1.png", video: "/pages/home/hero/banner.mp4", name: "Ananya Verma" },
-  { id: 4, image: "/pages/home/testimonials/2.png", video: "/pages/home/hero/banner.mp4", name: "Rohan & Priya" },
-  { id: 5, image: "/pages/home/testimonials/1.png", video: "/pages/home/hero/banner.mp4", name: "Ananya Verma" },
-];
+import type { TestimonialsData } from "@/website/types/home";
 
 const AUTOPLAY_DELAY = 4000;
 
-const Testimonials = () => {
+interface TestimonialsProps {
+  data: TestimonialsData;
+}
+
+const Testimonials = ({ data }: TestimonialsProps) => {
   const [current, setCurrent] = useState(2);
   const [isPlaying, setIsPlaying] = useState(false);
+  const { testimonials } = data;
   const total = testimonials.length;
 
   const goTo = (index: number) => {
@@ -41,8 +39,8 @@ const Testimonials = () => {
       <div className="container-custom">
         <SectionHeader
           className="max-w-2xl mx-auto text-center"
-          heading="Testimonials"
-          paragraph="Gulshan meticulously designs timeless residences from well planned neighborhoods to majestic high-rises where luxury and grandeur are never compromised."
+          heading={data.heading}
+          paragraph={data.paragraph}
         />
       </div>
 
@@ -114,7 +112,7 @@ const Testimonials = () => {
                     className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-transform duration-300 hover:scale-110"
                   >
                     <Image
-                      src="/pages/home/testimonials/play.svg"
+                      src={data.playIcon}
                       alt=""
                       width={68}
                       height={68}

@@ -6,12 +6,17 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Rings from "./Rings";
 import ValueCards from "./ValueCards";
-import { valueCards } from "./valuesData";
 import SectionHeader from "@/website/components/ui/SectionHeader";
+import type { ProjectValuesData } from "@/website/types/home";
+import { useIsMobile } from "@/website/components/ui/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProjectValuesSequence = () => {
+interface ProjectValuesSequenceProps {
+  data: ProjectValuesData;
+}
+
+const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const projectHeadingRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
@@ -215,7 +220,7 @@ const ProjectValuesSequence = () => {
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
 
-        const item = valueCards[index];
+        const item = data.valueCards[index];
 
         tl.to(
           card,
@@ -248,6 +253,8 @@ const ProjectValuesSequence = () => {
     return () => ctx.revert();
   }, []);
 
+  const isMobile = useIsMobile();
+
   return (
     <section
       ref={sectionRef}
@@ -265,10 +272,10 @@ const ProjectValuesSequence = () => {
         >
           <SectionHeader
             className="mx-auto text-center"
-            heading="North Wind Sanctuary"
-            paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been."
-            buttonText="Know More"
-            buttonHref="/"
+            heading={data.project.heading}
+            paragraph={data.project.paragraph}
+            buttonText={data.project.buttonText}
+            buttonHref={data.project.buttonHref}
           />
         </div>
 
@@ -278,7 +285,7 @@ const ProjectValuesSequence = () => {
           style={{ zIndex: 5 }}
         >
           <Image
-            src="/pages/home/projects/elevation.png"
+            src={isMobile ? data.project.buildingMob : data.project.buildingDesk}
             alt="Elevation"
             width={1920}
             height={1000}
@@ -297,8 +304,8 @@ const ProjectValuesSequence = () => {
         >
           <SectionHeader
             className="mx-auto text-center"
-            heading="Values That Shape Every Space"
-            paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            heading={data.values.heading}
+            paragraph={data.values.paragraph}
           />
         </div>
 
@@ -309,7 +316,7 @@ const ProjectValuesSequence = () => {
         <div ref={shapeRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 origin-center"
         >
           <Image
-            src="/pages/home/values/shape.svg"
+            src={data.values.shapeImage}
             alt=""
             width={500}
             height={620}
@@ -325,6 +332,7 @@ const ProjectValuesSequence = () => {
           <ValueCards
             ref={cardsWrapperRef}
             cardRefs={cardRefs}
+            valueCards={data.valueCards}
           />
         </div>
       </div>

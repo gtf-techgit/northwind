@@ -2,35 +2,13 @@
 
 import { forwardRef, useState } from "react";
 import Image from "next/image";
+import type { PresenceArea } from "@/website/types/home";
 
-const areas = [
-    {
-        id: "greater-noida",
-        label: "Greater Noida",
-        project: "Northwind Sanctuary",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        image: "/pages/home/projects/elevation.png",
-    },
-    {
-        id: "delhi",
-        label: "Delhi",
-        project: "Northwind Residency",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        image: "/pages/home/projects/elevation.png",
-    },
-    {
-        id: "dehradun",
-        label: "Dehradun",
-        project: "Northwind Meadows",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        image: "/pages/home/projects/elevation.png",
-    },
-];
+interface PresenceOverlayProps {
+    areas: PresenceArea[];
+}
 
-const PresenceOverlay = forwardRef<HTMLDivElement>((_, ref) => {
+const PresenceOverlay = forwardRef<HTMLDivElement, PresenceOverlayProps>(({ areas }, ref) => {
     const [activeId, setActiveId] = useState(areas[0].id);
     const activeArea = areas.find((area) => area.id === activeId) ?? areas[0];
 

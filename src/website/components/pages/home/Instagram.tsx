@@ -5,24 +5,15 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import SectionHeader from "../../ui/SectionHeader";
 import ZoomOut from "../../ui/ZoomOut";
+import { useIsMobile } from "../../ui/useIsMobile";
+import type { InstagramData } from "@/website/types/home";
 
-const posts = [
-  { image: "/pages/home/instagram/1.png" },
-  { image: "/pages/home/instagram/2.png" },
-  { image: "/pages/home/instagram/3.png" },
-  { image: "/pages/home/instagram/4.png" },
-  { image: "/pages/home/instagram/5.png" },
-];
 
 const AUTOPLAY_DELAY = 3000;
-const total = posts.length;
-const VISIBLE = 6.5;
-const HALF = Math.floor(VISIBLE / 2);
-const SLOT_COUNT = HALF * 2 + 1;
 
-const getSlideStyle = (offset: number) => {
+const getSlideStyle = (offset: number, half: number, isMobile: boolean) => {
   const abs = Math.abs(offset);
-  const isEdge = abs === HALF;
+  const isEdge = !isMobile && abs === half;
 
   if (isEdge) {
     return {
@@ -35,16 +26,27 @@ const getSlideStyle = (offset: number) => {
   }
 
   return {
-    scale: Math.max(1 - abs * 0.14, 0.58),
-    opacity: Math.max(1 - abs * 0.16, 0.4),
+    scale: Math.max(1 - abs * (isMobile ? 0.3 : 0.14), isMobile ? 0.6 : 0.58),
+    opacity: Math.max(1 - abs * (isMobile ? 0.35 : 0.16), isMobile ? 0.55 : 0.4),
     filter: abs >= 2 ? `blur(${(abs - 1) * 0.8}px)` : "blur(0px)",
     zIndex: 10 - abs,
     objectPosition: "center",
   };
 };
 
-const Instagram = () => {
+interface InstagramProps {
+  data: InstagramData;
+}
+
+const Instagram = ({ data }: InstagramProps) => {
   const [step, setStep] = useState(0);
+  const { posts } = data;
+  const total = posts.length;
+  const isMobile = useIsMobile();
+
+  const VISIBLE = isMobile ? 2.5 : 6.5;
+  const HALF = Math.floor(VISIBLE / 2);
+  const SLOT_COUNT = HALF * 2 + 1;
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -68,8 +70,8 @@ const Instagram = () => {
       <div className="container-custom">
         <SectionHeader
           className="max-w-lg mx-auto text-center"
-          heading="Follow us on instagram"
-          paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's."
+          heading={data.heading}
+          paragraph={data.paragraph}
         />
       </div>
 
@@ -80,8 +82,8 @@ const Instagram = () => {
         <div className="container-custom flex items-center justify-center gap-3 sm:gap-4 lg:gap-5">
           <AnimatePresence initial={false} mode="popLayout">
             {slots.map(({ i, offset, image }) => {
-              const style = getSlideStyle(offset);
-              const isEdge = Math.abs(offset) === HALF;
+              const style = getSlideStyle(offset, HALF, isMobile);
+              const isEdge = !isMobile && Math.abs(offset) === HALF;
 
               return (
                 <motion.div

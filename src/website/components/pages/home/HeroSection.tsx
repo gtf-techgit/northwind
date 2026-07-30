@@ -1,10 +1,15 @@
+import type { HeroSectionData } from "@/website/types/home";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+    data: HeroSectionData;
+}
+
+const HeroSection = ({ data }: HeroSectionProps) => {
     return (
         <section className="relative h-screen w-full overflow-hidden">
             <video
                 className="absolute inset-0 h-full w-full object-cover"
-                src="/pages/home/hero/banner.mp4"
+                src={data.videoSrc}
                 autoPlay
                 muted
                 loop
