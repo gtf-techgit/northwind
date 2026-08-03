@@ -17,6 +17,18 @@ const variantClasses: Record<ButtonVariant, string> = {
   contact: "bg-secondary text-primary! hover:bg-secondary-light",
 };
 
+const TextContent = ({ children }: { children: ReactNode }) => (
+  <span className="relative block overflow-hidden leading-none">
+    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full will-change-transform">
+      {children}
+    </span>
+
+    <span className="absolute left-0 top-full block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full will-change-transform">
+      {children}
+    </span>
+  </span>
+);
+
 const Button = ({
   children,
   href,
@@ -24,19 +36,19 @@ const Button = ({
   className = "",
   ...props
 }: ButtonProps) => {
-  const classes = `inline-flex items-center justify-center font-body cursor-pointed rounded-full px-10 py-3 text-[15px] font-heading tracking-wide transition-colors ${variantClasses[variant]} ${className}`;
+  const classes = `group inline-flex items-center justify-center rounded-full px-10 py-4 font-heading text-[15px] tracking-wide transition-colors ${variantClasses[variant]} ${className}`;
 
   if (href) {
     return (
       <Link href={href} className={classes}>
-        {children}
+        <TextContent>{children}</TextContent>
       </Link>
     );
   }
 
   return (
     <button type="button" className={classes} {...props}>
-      {children}
+      <TextContent>{children}</TextContent>
     </button>
   );
 };

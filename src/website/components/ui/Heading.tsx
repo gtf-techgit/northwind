@@ -9,7 +9,7 @@ interface HeadingProps {
 const Heading = ({ as: Tag = "h2", children, className = "" }: HeadingProps) => {
   return (
     <Tag
-      className={`font-heading text-3xl leading-snug text-primary md:text-4xl lg:text-[2.75rem] ${className}`}
+      className={`font-heading capitalize text-3xl leading-snug text-primary md:text-4xl lg:text-[2.75rem] ${className}`}
     >
       {children}
     </Tag>

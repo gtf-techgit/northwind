@@ -136,7 +136,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         shapeRef.current,
         {
           opacity: 1,
-          scale: 1,
+          scale: 0.8,
           rotation: 0,
           duration: 0.55,
           ease: "power3.out",

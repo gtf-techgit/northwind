@@ -77,7 +77,7 @@ const Contact = ({ data }: ContactProps) => {
             I accept the privacy policy and terms of use
           </label>
 
-          <Button type="submit" variant="contact" className="w-full cursor-pointer">
+          <Button type="submit" variant="contact" className="w-full font-body cursor-pointer">
             Submit
           </Button>
         </form>

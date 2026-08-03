@@ -21,6 +21,9 @@ const Blogs = ({ data }: BlogsProps) => {
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Partial<Record<BlogTab, HTMLButtonElement | null>>>({});
+  const pillRef = useRef<HTMLDivElement>(null);
+  const pillReady = useRef(false);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -54,6 +57,41 @@ const Blogs = ({ data }: BlogsProps) => {
     ScrollTrigger.refresh();
   }, [activeTab]);
 
+  useLayoutEffect(() => {
+    const activeBtn = tabRefs.current[activeTab];
+    const pill = pillRef.current;
+    if (!activeBtn || !pill) return;
+
+    const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = activeBtn;
+
+    if (!pillReady.current) {
+      gsap.set(pill, { x: offsetLeft, y: offsetTop, width: offsetWidth, height: offsetHeight });
+      pillReady.current = true;
+      return;
+    }
+
+    gsap.to(pill, {
+      x: offsetLeft,
+      y: offsetTop,
+      width: offsetWidth,
+      height: offsetHeight,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+  }, [activeTab]);
+
+  const handleTabChange = (id: BlogTab) => {
+  if (id === activeTab) return;
+
+  if ("startViewTransition" in document) {
+    document.startViewTransition(() => {
+      setActiveTab(id);
+    });
+  } else {
+    setActiveTab(id);
+  }
+};
+
   return (
     <section
       ref={sectionRef}
@@ -67,21 +105,33 @@ const Blogs = ({ data }: BlogsProps) => {
             paragraph={data.paragraph}
           />
 
-          <div className="inline-flex shrink-0 items-center gap-1 self-start rounded-full bg-primary/5 p-1 md:self-auto">
+          <div className="relative inline-flex shrink-0 items-center gap-1 self-start rounded-full bg-primary/5 p-1 md:self-auto">
+            <div
+              ref={pillRef}
+              className="absolute left-0 top-0 rounded-full bg-primary"
+              style={{ willChange: "transform, width, height" }}
+            />
             {data.tabs.map((tab) => (
               <button
                 key={tab.id}
+                ref={(el) => {
+                  tabRefs.current[tab.id] = el;
+                }}
                 type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`cursor-pointer rounded-full font-body px-8 py-3  pera tracking-wide transition-colors ${activeTab === tab.id
-                    ? "bg-primary text-secondary!"
+                onClick={() => handleTabChange(tab.id)}
+                className={`relative z-10 cursor-pointer rounded-full font-body px-8 py-3 pera tracking-wide transition-colors ${activeTab === tab.id
+                    ? "text-secondary!"
                     : "text-primary/70 hover:text-primary"
                   }`}
               >
-                {tab.label}
+                <span className="text-slide">
+                  <span>{tab.label}</span>
+                  <span>{tab.label}</span>
+                </span>
               </button>
             ))}
           </div>
+          
         </div>
 
         <div className="mt-10 overflow-hidden">
@@ -105,9 +155,13 @@ const Blogs = ({ data }: BlogsProps) => {
                     />
                   </ZoomOut>
                 </div>
-                <h3 className="mt-4 md:mt-6 text-[14px]  md:text-xl font-semibold font-body text-primary">
+                <div className="flex justify-between items-center mt-4 md:mt-6">
+                  <h3 className=" text-[14px]  md:text-[18px] max-w-80 font-semibold font-body text-primary">
                   {item.title}
                 </h3>
+                  <p className="text-sm font-body ">{item.date}</p>
+                </div>
+                
                 <p className="mt-3 line-clamp-2 font-body pera leading-relaxed ">
                   {item.description}
                 </p>
@@ -116,8 +170,8 @@ const Blogs = ({ data }: BlogsProps) => {
           </div>
         </div>
         <div className="w-full flex justify-center mt-5">
-         <Button className="mt-6 font-semibold cursor-pointer">{data.buttonText}</Button>
-         </div>
+          <Button className="mt-6 font-semibold cursor-pointer">{data.buttonText}</Button>
+        </div>
       </div>
     </section>
   );
