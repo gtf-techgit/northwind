@@ -28,54 +28,58 @@ const Overview = ({ data }: OverviewProps) => {
     const bottomContentRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
+useLayoutEffect(() => {
+  const mm = gsap.matchMedia();
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            const distance = topContentRef.current!.offsetHeight;
+  mm.add("(min-width: 1024px)", () => {
+    const ctx = gsap.context(() => {
+      const distance = topContentRef.current!.offsetHeight;
 
-            gsap.set(bottomContentRef.current, {
-                y: distance,
-            });
+      gsap.set(bottomContentRef.current, {
+        y: distance,
+      });
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: "+=180%",
-                    pin: true,
-                    scrub: true,
-                    anticipatePin: 1, 
-                    // pinSpacing:false,
-                    invalidateOnRefresh: true,
-                },
-            });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=150%",
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-            tl.to(
-                topContentRef.current,
-                {
-                     y: '-150%',
-                    ease: "none",
-                    duration: 2,
-                },
-                0
-            );
+      tl.to(
+        topContentRef.current,
+        {
+          y: "-150%",
+          ease: "none",
+          duration: 1.4,
+        },
+        0
+      );
 
-            tl.to(
-                bottomContentRef.current,
-                {
-                    y: -distance,
-                    ease: "none",
-                    duration: 3,
-                },
-                0
-            );
-        });
+      tl.to(
+        bottomContentRef.current,
+        {
+          y: "-50%",
+          ease: "none",
+          duration: 2,
+        },
+        0
+      );
+    });
 
-        return () => ctx.revert();
-    }, []);
+    return () => ctx.revert();
+  });
+
+  return () => mm.revert();
+}, []);
 
     return (
-        <section ref={sectionRef} className="relative overflow-hidden section-toppadding mix-blend-multiply">
+        <section ref={sectionRef} className="relative overflow-hidden section-toppadding mix-blend-multiply ">
             <div ref={contentRef} className="container-custom">
                 <div ref={topContentRef}
                     className="relative  grid gap-8 md:grid-cols-12 md:gap-6"

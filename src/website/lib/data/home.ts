@@ -57,8 +57,6 @@ export const projectValuesData: ProjectValuesData = {
       title: "Innovation",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       icon: "leaf",
-      x: 0,
-      y: -250,
       rotation: 0,
     },
     {
@@ -66,8 +64,6 @@ export const projectValuesData: ProjectValuesData = {
       title: "Innovation",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       icon: "leaf",
-      x: -450,
-      y: -120,
       rotation: -8,
     },
     {
@@ -75,8 +71,6 @@ export const projectValuesData: ProjectValuesData = {
       title: "Innovation",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       icon: "leaf",
-      x: 450,
-      y: -120,
       rotation: 8,
     },
     {
@@ -84,8 +78,6 @@ export const projectValuesData: ProjectValuesData = {
       title: "Innovation",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       icon: "leaf",
-      x: -450,
-      y: 120,
       rotation: -6,
     },
     {
@@ -93,8 +85,6 @@ export const projectValuesData: ProjectValuesData = {
       title: "Innovation",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       icon: "leaf",
-      x: 450,
-      y: 120,
       rotation: 6,
     },
     {
@@ -102,8 +92,6 @@ export const projectValuesData: ProjectValuesData = {
       title: "Innovation",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       icon: "leaf",
-      x: 0,
-      y: 250,
       rotation: 0,
     },
   ],

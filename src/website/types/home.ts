@@ -27,8 +27,6 @@ export interface ValueCard {
   title: string;
   description: string;
   icon: string;
-  x: number;
-  y: number;
   rotation: number;
 }
 

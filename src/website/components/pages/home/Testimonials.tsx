@@ -62,7 +62,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
                 src={slide.image}
                 alt=""
                 fill
-                className="scale-110 object-cover blur-[1px]"
+                className=" object-cover blur-[1px]"
               />
               </ZoomOut>
               <div
@@ -135,17 +135,21 @@ const Testimonials = ({ data }: TestimonialsProps) => {
               type="button"
               onClick={() => goTo(index)}
               aria-label={`Show testimonial from ${testimonial.name}`}
-              className={`relative shrink-0 cursor-pointer overflow-hidden rounded-full transition-all duration-300 ${isActive
-                  ? "h-16 w-16 opacity-100 ring-4 ring-white shadow-md-custom sm:h-[70px] sm:w-[70px]"
-                  : "h-11 w-11 opacity-60 grayscale hover:opacity-90 hover:grayscale-0 sm:h-12 sm:w-12"
-                }`}
+              className="relative h-16 w-16 shrink-0 cursor-pointer sm:h-[70px] sm:w-[70px]"
             >
-              <Image
-                src={testimonial.image}
-                alt={testimonial.name}
-                fill
-                className="object-cover"
-              />
+              <span
+                className={`absolute inset-0 overflow-hidden rounded-full transition-all duration-300 ${isActive
+                    ? "scale-100 opacity-100 ring-4 ring-white shadow-md-custom"
+                    : "scale-[0.7] opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                  }`}
+              >
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  fill
+                  className="object-cover"
+                />
+              </span>
             </button>
           );
         })}

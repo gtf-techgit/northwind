@@ -40,7 +40,7 @@ const Contact = ({ data }: ContactProps) => {
               type="text"
               placeholder="Full Name*"
               required
-              className="w-full rounded-full border border-white/15 bg-white/5 px-6 py-3.5 font-body text-sm text-white placeholder-[#adc88d] transition-colors focus:border-secondary/60 focus:outline-none"
+              className="w-full rounded-full border border-white/15 bg-white/5 px-6 py-3.5 font-body pera text-white placeholder-[#adc88d] transition-colors focus:border-secondary/60 focus:outline-none"
             />
             <input
               type="tel"

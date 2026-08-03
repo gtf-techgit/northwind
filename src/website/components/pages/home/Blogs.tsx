@@ -73,7 +73,7 @@ const Blogs = ({ data }: BlogsProps) => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`cursor-pointer rounded-full font-body px-8 py-3  text-sm tracking-wide transition-colors ${activeTab === tab.id
+                className={`cursor-pointer rounded-full font-body px-8 py-3  pera tracking-wide transition-colors ${activeTab === tab.id
                     ? "bg-primary text-secondary!"
                     : "text-primary/70 hover:text-primary"
                   }`}
@@ -105,10 +105,10 @@ const Blogs = ({ data }: BlogsProps) => {
                     />
                   </ZoomOut>
                 </div>
-                <h3 className="mt-6  text-xl font-semibold font-body text-primary">
+                <h3 className="mt-4 md:mt-6 text-[14px]  md:text-xl font-semibold font-body text-primary">
                   {item.title}
                 </h3>
-                <p className="mt-3 line-clamp-2 font-body text-sm leading-relaxed text-muted md:text-base">
+                <p className="mt-3 line-clamp-2 font-body pera leading-relaxed ">
                   {item.description}
                 </p>
               </div>

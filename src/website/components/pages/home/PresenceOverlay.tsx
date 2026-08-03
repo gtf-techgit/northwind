@@ -13,13 +13,13 @@ const PresenceOverlay = forwardRef<HTMLDivElement, PresenceOverlayProps>(({ area
     const activeArea = areas.find((area) => area.id === activeId) ?? areas[0];
 
     return (
-        <div ref={ref} className="w-full bg-[#0D382912] absolute top-0 right-0 z-10 flex h-full justify-end backdrop-blur-sm">
+        <div ref={ref} className="w-full bg-linear-to-r from-transparent  to-[#0D382912] absolute top-0 right-0 z-10 flex h-full justify-end backdrop-blur-sm">
         <div
             
-            className="w-full  max-w-115  bg-page px-10 shadow-lg-custom"
+            className="w-full  md:max-w-115  bg-page px-5 md:px-10 shadow-lg-custom"
         >
             <div className="flex flex-col justify-center h-full">
-            <h3 className="font-heading text-3xl text-primary">Area of Operations</h3>
+            <h3 className="font-heading text-2xl md:text-3xl text-primary">Area of Operations</h3>
             <p className="mt-2 text-body text-secondary">
                 We have projects in Greater Noida, Delhi &amp; Dehradun
             </p>
@@ -30,7 +30,7 @@ const PresenceOverlay = forwardRef<HTMLDivElement, PresenceOverlayProps>(({ area
                         key={area.id}
                         type="button"
                         onClick={() => setActiveId(area.id)}
-                        className={`flex-1 cursor-pointer rounded-full px-4 py-2.5 text-sm font-heading transition-colors ${
+                        className={`flex-1 cursor-pointer rounded-full px-3 md:px-4 py-2 md:py-2.5 text-[12px] md:text-sm font-heading transition-colors ${
                             activeId === area.id
                                 ? "bg-primary text-secondary!"
                                 : "text-primary/70 hover:text-primary"
@@ -55,7 +55,7 @@ const PresenceOverlay = forwardRef<HTMLDivElement, PresenceOverlayProps>(({ area
                     <h4 className="font-heading text-xl text-primary">
                         {activeArea.project}
                     </h4>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                    <span className="flex h-8 md:h-10 w-8 md:w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"

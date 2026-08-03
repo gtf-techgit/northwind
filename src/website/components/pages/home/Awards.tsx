@@ -91,7 +91,7 @@ const Awards = ({ data }: AwardsProps) => {
         <div className="grid w-full items-center gap-y-16 md:grid-cols-12">
           {/* Left content */}
           <div className="md:col-span-4">
-            <h2 className="max-w-sm font-heading text-4xl leading-[1.15] text-brand md:text-[42px]">
+            <h2 className="max-w-sm font-heading text-3xl md:text-4xl lg:text-[2.75rem]  leading-[1.15] text-brand ">
               {data.heading}
             </h2>
 
@@ -125,10 +125,10 @@ const Awards = ({ data }: AwardsProps) => {
               <div
                 className="relative w-full rounded-[28px] border border-white/25 px-8 py-10 md:absolute md:right-0 md:top-1/2 md:w-[70%] md:-translate-y-1/2 md:px-10 md:py-14 md:pl-32"
               >
-                <h3 className="font-heading text-2xl text-brand">
+                <h3 className="font-heading text-xl md:text-2xl text-brand">
                   {data.cardHeading}
                 </h3>
-                <p className="mt-3 max-w-sm font-body text-sm leading-relaxed text-white/70">
+                <p className="mt-3 max-w-sm font-body pera leading-relaxed text-white/70">
                   {data.cardParagraph}
                 </p>
               </div>

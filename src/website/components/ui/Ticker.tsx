@@ -32,7 +32,7 @@ const Ticker = ({ value, suffix = "", className = "" }: TickerProps) => {
                         ease: "power4.out",
                         scrollTrigger: {
                             trigger: containerRef.current,
-                            start: "top 85%",
+                            start: "top 95%",
                             // once: true,
                             toggleActions:  "play none none reverse"
                         },

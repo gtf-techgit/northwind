@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Rings from "./Rings";
-import ValueCards from "./ValueCards";
+import ValueCards, { cardPositions } from "./ValueCards";
 import SectionHeader from "@/website/components/ui/SectionHeader";
 import type { ProjectValuesData } from "@/website/types/home";
 import { useIsMobile } from "@/website/components/ui/useIsMobile";
@@ -25,11 +25,14 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
   const ringsRef = useRef<HTMLDivElement>(null);
   const cardsWrapperRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
+  const isMobile = useIsMobile();
+  
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+
+      const isMobileView = window.matchMedia("(max-width: 767px)").matches;
 
       /* ---------------- Initial State ---------------- */
 
@@ -127,7 +130,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
           opacity: 1,
           ease: "power2.in",
         },
-        0
+        0.1
       );
       tl.to(
         shapeRef.current,
@@ -149,7 +152,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         shapeRef.current,
         {
           delay: 1,
-          scale: 0.5,
+          scale: 0.4,
           rotation: 360,
           x: 0,
           y: 0,
@@ -167,7 +170,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
           duration: 0.4,
           ease: "power2.in",
         },
-        0.35
+        0.8
       );
 
 
@@ -220,7 +223,9 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
 
-        const item = data.valueCards[index];
+        const position = cardPositions[index];
+        const targetX = isMobileView ? position.mobilex : position.x;
+        const targetY = isMobileView ? position.mobiley : position.y;
 
         tl.to(
           card,
@@ -228,9 +233,8 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
             delay: 1.2,
             opacity: 1,
             scale: 1,
-            x: item.x,
-            y: item.y,
-            //   rotation: item.rotation,
+            x: targetX,
+            y: targetY,
             ease: "none",
             duration: 0.8,
           },
@@ -253,12 +257,11 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
     return () => ctx.revert();
   }, []);
 
-  const isMobile = useIsMobile();
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden"
+      className="relative min-h-screen overflow-hidden"
     >
       <div className="relative h-full w-full">
 
@@ -327,7 +330,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         {/* Cards */}
 
         <div
-          className="absolute inset-0 z-30 flex items-center justify-center"
+          className="absolute inset-0 z-30 flex items-center justify-center min-h-screen"
         >
           <ValueCards
             ref={cardsWrapperRef}

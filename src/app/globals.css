@@ -83,6 +83,7 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-body), sans-serif;
   overflow-x: hidden;
+  font-size: 14px;
 }
 
  /* Typography Utilities */
@@ -198,6 +199,27 @@ body {
 }
 .section-toppadding {
   padding-top: 80px;
+}
+
+.pera{
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+
+  body {
+  font-size: 12px;
+}
+
+.pera{
+  font-size: 12px;
+}
+  .section-padding {
+    padding-block: 50px;
+  }
+  .section-toppadding {
+    padding-top: 50px;
+  }
 }
 
 /* ===========================

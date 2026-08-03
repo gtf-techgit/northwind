@@ -32,7 +32,7 @@ const OurPresence = ({ data }: OurPresenceProps) => {
                     anticipatePin: 1,
                     invalidateOnRefresh: true,
                 },
-            }).to(overlayRef.current, { xPercent: 0, ease: "none", opacity: 1 , duration: 3}, 2);
+            }).to(overlayRef.current, { xPercent: 0, ease: "none", opacity: 1 , duration: 4}, 2).to({}, { duration: 3 });;
         }, sectionRef);
 
         return () => ctx.revert();
@@ -57,11 +57,11 @@ const OurPresence = ({ data }: OurPresenceProps) => {
                         alt="Northwind estate illustration"
                         width={350}
                         height={400}
-                        className="object-contain h-auto mx-auto object-bottom"
+                        className="object-contain w-[60%]  h-auto mx-auto object-bottom"
                     />
 
                     <div className="mt-8 w-72 max-w-full text-center">
-                        <h3 className="font-heading text-4xl text-primary">
+                        <h3 className="font-heading text-2xl md:text-4xl text-primary">
                             {data.areaOperations.heading}
                         </h3>
 
