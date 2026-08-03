@@ -7,20 +7,14 @@ import Button from "@/website/components/ui/Button";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Ticker from "@/website/components/ui/Ticker";
 import type { OverviewData } from "@/website/types/home";
+import Stats from "./Stats";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface OverviewProps {
     data: OverviewData;
 }
-
-const parseStatValue = (value: string) => {
-    const match = value.match(/^(\d+)(.*)$/);
-    if (!match) return { number: 0, suffix: value };
-    return { number: Number(match[1]), suffix: match[2] };
-};
 
 const Overview = ({ data }: OverviewProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -99,30 +93,7 @@ useLayoutEffect(() => {
                 </div>
 
                 <div ref={bottomContentRef} className="mt-20">
-                    <div
-                        className="relative"
-                    >
-                        <div className="grid grid-cols-3 divide-x divide-border">
-                            {data.stats.map((stat) => {
-                                const { number, suffix } = parseStatValue(stat.value);
-                                return (
-                                    <div
-                                        key={stat.label}
-                                        className="px-4 text-center first:pl-0 md:px-8"
-                                    >
-                                        <Ticker
-                                            value={number}
-                                            suffix={suffix}
-                                            className="font-heading text-[28px] md:text-[42px] text-primary"
-                                        />
-                                        <p className="mt-2 text-[12px] md:text-[16px]  text-muted ">
-                                            {stat.label}
-                                        </p>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
+                    <Stats stats={data.stats} />
 
                     <div
                         className="w-full  mt-10 "
