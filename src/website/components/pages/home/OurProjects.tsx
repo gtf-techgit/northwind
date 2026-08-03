@@ -26,6 +26,7 @@ const OurProjects = ({ data }: OurProjectsProps) => {
           start: 'top top',
           end: '+=70%',
           pin: true,
+           pinSpacing: false,
           scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,

@@ -35,6 +35,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
       const isMobileView = window.matchMedia("(max-width: 767px)").matches;
 
       /* ---------------- Initial State ---------------- */
+      
 
       gsap.set(projectHeadingRef.current, {
         opacity: 1,
@@ -87,7 +88,8 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=260%",
+          // end: "+=260%",
+           end: "+=320%",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -99,12 +101,15 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
          PROJECT EXIT
       =========================================================== */
 
+      tl.to({}, { duration: 4 },0);
       tl.to(
         projectHeadingRef.current,
         {
           yPercent: -140,
           opacity: 0,
           scale: 0.92,
+          duration: 0.4,
+          ease: "power2.in",
         },
         0
       );
@@ -114,6 +119,8 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         {
           yPercent: 120,
           opacity: 0,
+          duration: 0.4,
+          ease: "power2.in",
         },
         0
       );
