@@ -9,7 +9,7 @@ interface ContactProps {
 
 const Contact = ({ data }: ContactProps) => {
   return (
-    <section className="relative w-full min-h-screen section-padding overflow-hidden">
+    <section className="relative w-full md:min-h-screen section-padding overflow-hidden">
       <Image
         src={data.bgImage}
         alt=""

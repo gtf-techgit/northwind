@@ -20,9 +20,9 @@ export const cardPositions: CardPosition[] = [
   { x: 0, y: -270, mobilex: 0, mobiley: -370 },
   { x: -450, y: -150, mobilex: 0, mobiley: -220 },
   { x: 450, y: -150, mobilex: 0, mobiley: -70 },
-  { x: -450, y: 150, mobilex: 0, mobiley: 140 },
-  { x: 450, y: 150, mobilex: 0, mobiley: 310 },
-  { x: 0, y: 270, mobilex: 0, mobiley: 480 }, 
+  { x: -450, y: 150, mobilex: 0, mobiley: 80 },
+  { x: 450, y: 150, mobilex: 0, mobiley: 230 },
+  { x: 0, y: 270, mobilex: 0, mobiley: 380 }, 
 ];
 
 const ValueCards = forwardRef<HTMLDivElement, ValueCardsProps>(
