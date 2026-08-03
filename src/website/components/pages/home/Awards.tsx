@@ -8,7 +8,7 @@ const TOTAL_FRAMES = 240;
 const FPS = 30;
 
 const getFramePath = (frame: number) =>
-  `/pages/home/awards/frames/${String(frame).padStart(3, "0")}.png`;
+  `/pages/home/awards/frame/${String(frame).padStart(3, "0")}.png`;
 
 interface AwardsProps {
   data: AwardsData;
