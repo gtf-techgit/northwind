@@ -39,7 +39,7 @@ useLayoutEffect(() => {
           start: "top top",
           end: "+=100%",
           pin: true,
-          scrub: true,
+          scrub: 2,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
