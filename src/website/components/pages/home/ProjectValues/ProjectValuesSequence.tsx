@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Rings from "./Rings";
 import ValueCards, { cardPositions } from "./ValueCards";
 import SectionHeader from "@/website/components/ui/SectionHeader";
+import ScaleIn from "@/website/components/ui/ScaleIn";
 import type { ProjectValuesData } from "@/website/types/home";
 import { useIsMobile } from "@/website/components/ui/useIsMobile";
 
@@ -89,9 +90,9 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
           trigger: sectionRef.current,
           start: "top top",
           // end: "+=260%",
-           end: "+=320%",
+           end: "+=200%",
           pin: true,
-          scrub: 1,
+          scrub: 2,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -108,8 +109,8 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
           yPercent: -140,
           opacity: 0,
           scale: 0.92,
-          duration: 0.4,
-          ease: "power2.in",
+          duration: 1.2,
+          ease: "power2.inOut",
         },
         0
       );
@@ -117,10 +118,10 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
       tl.to(
         buildingRef.current,
         {
-          yPercent: 120,
+          yPercent: 140,
           opacity: 0,
-          duration: 0.4,
-          ease: "power2.in",
+          duration: 1.2,
+          ease: "power2.inOut",
         },
         0
       );
@@ -137,15 +138,16 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
           opacity: 1,
           ease: "power2.in",
         },
-        0.1
+        0.4
       );
       tl.to(
         shapeRef.current,
         {
+          delay: 0.6,
           opacity: 1,
           scale: 0.8,
-          rotation: 0,
-          duration: 0.55,
+          rotation: 90,
+          duration: 1.9,
           ease: "power3.out",
         },
         0.18
@@ -158,12 +160,12 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
       tl.to(
         shapeRef.current,
         {
-          delay: 1,
+          delay: 1.6,
           scale: 0.4,
-          rotation: 360,
+          rotation: -90,
           x: 0,
           y: 0,
-          duration: 1.5,
+          duration: 2,
           ease: "power3.inOut",
         },
         0.25
@@ -177,7 +179,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
           duration: 0.4,
           ease: "power2.in",
         },
-        0.8
+        1.6
       );
 
 
@@ -199,30 +201,6 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         0.25
       );
 
-
-
-      /* ===========================================================
-         SMALL FLOAT
-      =========================================================== */
-
-      // tl.to(
-      //   shapeRef.current,
-      //   {
-      //     y: -10,
-      //     duration: 0.25,
-      //   },
-      //   0.75
-      // );
-
-      // tl.to(
-      //   shapeRef.current,
-      //   {
-      //     y: 0,
-      //     duration: 0.25,
-      //   },
-      //   1
-      // );
-
       /* ===========================================================
          CARDS BURST
       =========================================================== */
@@ -237,13 +215,13 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         tl.to(
           card,
           {
-            delay: 1.2,
+            delay: 2.3,
             opacity: 1,
             scale: 1,
             x: targetX,
             y: targetY,
             ease: "none",
-            duration: 0.8,
+            duration: 1.5,
           },
           0.42
         );

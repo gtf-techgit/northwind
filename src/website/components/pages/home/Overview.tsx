@@ -37,7 +37,7 @@ useLayoutEffect(() => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=150%",
+          end: "+=100%",
           pin: true,
           scrub: true,
           anticipatePin: 1,

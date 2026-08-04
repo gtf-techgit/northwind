@@ -42,7 +42,7 @@ const Blogs = ({ data }: BlogsProps) => {
           start: "top top",
           end: () => `+=${getScrollDistance()}`,
           pin: true,
-          scrub: true,
+          scrub: 2,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },

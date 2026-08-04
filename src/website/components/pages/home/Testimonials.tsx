@@ -48,13 +48,18 @@ const Testimonials = ({ data }: TestimonialsProps) => {
         {[-1, 1].map((offset) => {
           const slide = testimonials[((current + offset) % total + total) % total];
           const isLeft = offset === -1;
+          const targetIndex = ((current + offset) % total + total) % total;
 
           return (
-            <div
-              key={isLeft ? "peek-left" : "peek-right"}
-              className={`pointer-events-none absolute top-1/2 hidden h-[70%] w-[18%] -translate-y-1/2 overflow-hidden rounded-lg-custom sm:block ${isLeft ? "left-0" : "right-0"
-                }`}
-            >
+
+<button
+  key={isLeft ? "peek-left" : "peek-right"}
+  type="button"
+  onClick={() => goTo(targetIndex)}
+  className={`absolute top-1/2 hidden h-[70%] w-[18%] -translate-y-1/2 overflow-hidden rounded-lg-custom sm:block cursor-pointer ${
+    isLeft ? "left-0" : "right-0"
+  }`}
+>
                 <ZoomOut
                     className="absolute inset-0 h-full w-full"
                   >
@@ -71,7 +76,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
                     : "bg-linear-to-l from-background/60  to-background/60"
                   }`}
               />
-            </div>
+            </button>
           );
         })}
 

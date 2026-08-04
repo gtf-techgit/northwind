@@ -26,13 +26,13 @@ const OurPresence = ({ data }: OurPresenceProps) => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top top",
-                    end: "+=100%",
+                    end: "+=150%",
                     pin: true,
-                    scrub: true,
+                    scrub: 2,
                     anticipatePin: 1,
                     invalidateOnRefresh: true,
                 },
-            }).to(overlayRef.current, { xPercent: 0, ease: "none", opacity: 1 , duration: 4}, 2).to({}, { duration: 3 });;
+            }).to(overlayRef.current, { xPercent: 0, ease: "power3.out", opacity: 1 , duration: 4}, 0).to({}, { duration: 3 });;
         }, sectionRef);
 
         return () => ctx.revert();
