@@ -25,7 +25,7 @@ const HeroBanner = ({ data, showTitle = true }: HeroBannerProps) => {
               className="absolute inset-0 h-full w-full"
             >
               <Image
-                src={data.media.desktop || ""}
+                src={data.media.files.desktop_file || ""}
                 alt={data.media.alt || data.title || "hero banner image"}
                 fill
                 priority
@@ -43,7 +43,11 @@ const HeroBanner = ({ data, showTitle = true }: HeroBannerProps) => {
               className="absolute inset-0 h-full w-full"
             >
               <Image
-                src={data.media.mobile || data.media.desktop || ""}
+                src={
+                  data.media.files.mobile_file ||
+                  data.media.files.desktop_file ||
+                  ""
+                }
                 alt={data.media.alt || data.title || "hero banner image"}
                 fill
                 priority
@@ -64,7 +68,7 @@ const HeroBanner = ({ data, showTitle = true }: HeroBannerProps) => {
             playsInline
             poster={data.media.poster}
           >
-            <source src={data.media.desktop} type="video/mp4" />
+            <source src={data.media.files.desktop_file} type="video/mp4" />
           </video>
 
           <video
@@ -76,7 +80,11 @@ const HeroBanner = ({ data, showTitle = true }: HeroBannerProps) => {
             poster={data.media.poster}
           >
             <source
-              src={data.media.mobile || data.media.desktop}
+              src={
+                data.media.files.mobile_file ||
+                data.media.files.desktop_file ||
+                ""
+              }
               type="video/mp4"
             />
           </video>
