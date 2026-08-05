@@ -44,8 +44,8 @@ export const missionVisionData: MissionVisionProps[] = [
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.Lorem Ipsum is simply dummy text of the printing.",
     },
     files: {
-      desktop_file: "/pages/about-us/mission.webp",
-      mobile_file: "/pages/about-us/mission.webp",
+      desktop_file: "/pages/about-us/vision.webp",
+      mobile_file: "/pages/about-us/vision.webp",
     },
   },
   {
@@ -56,8 +56,8 @@ export const missionVisionData: MissionVisionProps[] = [
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.Lorem Ipsum is simply dummy text of the printing.",
     },
     files: {
-      desktop_file: "/pages/about-us/vision.webp",
-      mobile_file: "/pages/about-us/vision.webp",
+      desktop_file: "/pages/about-us/mission.webp",
+      mobile_file: "/pages/about-us/mission.webp",
     },
   },
 ];
@@ -67,17 +67,20 @@ export const BrandStory: BrnadStoryProps = {
     heading: "The Brand Story",
   },
   description: {
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
   },
   listing: [
     {
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      desc: "In the realm where the North Wind blows, A tale of real estate unfolds. Not just bricks and mortar, we decree, But soulful spaces where dreams roam free.",
     },
     {
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      desc: "In the realm where the North Wind blows, A tale of real estate unfolds. Not just bricks and mortar, we decree, But soulful spaces where dreams roam free.",
     },
     {
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      desc: "In the realm where the North Wind blows, A tale of real estate unfolds. Not just bricks and mortar, we decree, But soulful spaces where dreams roam free.",
+    },
+    {
+      desc: "In the realm where the North Wind blows, A tale of real estate unfolds. Not just bricks and mortar, we decree, But soulful spaces where dreams roam free.",
     },
   ],
 };

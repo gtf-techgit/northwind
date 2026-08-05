@@ -101,7 +101,7 @@ const MissionVision = ({ data }: MissionVisionSectionProps) => {
         y: offsets.missionDeltaY,
         scale: offsets.missionScale,
         borderRadius: "20px",
-        transformOrigin: "center center",
+        transformOrigin: "-30% center",
         zIndex: 20,
         opacity: 1,
       });
@@ -221,13 +221,13 @@ const MissionVision = ({ data }: MissionVisionSectionProps) => {
               {/* Main Center Slot Reference Box */}
               <div
                 ref={mainSlotRef}
-                className="relative w-full max-w-[460px] lg:max-w-[520px] aspect-[4/5] rounded-[32px]"
+                className="relative w-[80%] aspect-[2/3] lg:h-[540px] 2xl:h-[640px] rounded-[32px]"
               >
                 {/* Vision Moving Card (Starts center main, moves to top-left shoulder slot) */}
                 <div
                   ref={visionCardRef}
                   onClick={() => handleScrollToProgress(0)}
-                  className="absolute inset-0 w-full h-full rounded-[32px] overflow-hidden shadow-xl cursor-pointer will-change-transform z-20"
+                  className="absolute inset-0 w-full h-full rounded-[20px] overflow-hidden shadow-xl cursor-pointer will-change-transform z-20"
                 >
                   <Image
                     src={visionImgSrc}
@@ -256,7 +256,7 @@ const MissionVision = ({ data }: MissionVisionSectionProps) => {
             </div>
 
             {/* Right Text Column & Bottom-Right Thumbnail Slot */}
-            <div className="lg:col-span-5 relative flex flex-col justify-between min-h-[480px] lg:pl-6 py-2">
+            <div className="lg:col-span-5 relative flex flex-col justify-center min-h-[480px] lg:pl-4 py-2">
               {/* Text Area */}
               <div className="relative min-h-[260px]">
                 {/* Vision Text */}
