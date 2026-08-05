@@ -50,7 +50,7 @@ const OurProjects = ({ data }: OurProjectsProps) => {
   }, [])
 
   return (
-    <section ref={sectionRef} className="w-full h-screen section-padding flex flex-col justify-center -mt-60 items-center relative">
+    <section ref={sectionRef} className="w-full h-screen section-padding flex flex-col justify-center md:-mt-60 items-center relative">
         <div ref={bgImageRef} className="absolute inset-0 flex justify-center items-center">
             <Image
             src={data.bgImage}

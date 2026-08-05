@@ -17,12 +17,12 @@ interface CardPosition {
 }
 
 export const cardPositions: CardPosition[] = [
-  { x: 0, y: -270, mobilex: 0, mobiley: -370 },
-  { x: -450, y: -150, mobilex: 0, mobiley: -220 },
-  { x: 450, y: -150, mobilex: 0, mobiley: -70 },
-  { x: -450, y: 150, mobilex: 0, mobiley: 80 },
-  { x: 450, y: 150, mobilex: 0, mobiley: 230 },
-  { x: 0, y: 270, mobilex: 0, mobiley: 380 }, 
+  { x: 0, y: -270, mobilex: 0, mobiley: -320 },
+  { x: -450, y: -150, mobilex: 0, mobiley: -200 },
+  { x: 450, y: -150, mobilex: 0, mobiley: -80 },
+  { x: -450, y: 150, mobilex: 0, mobiley: 40 },
+  { x: 450, y: 150, mobilex: 0, mobiley: 160 },
+  { x: 0, y: 270, mobilex: 0, mobiley: 280 }, 
 ];
 
 const ValueCards = forwardRef<HTMLDivElement, ValueCardsProps>(
@@ -41,21 +41,21 @@ const ValueCards = forwardRef<HTMLDivElement, ValueCardsProps>(
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] md:w-full md:max-w-[320px] rounded-[28px] bg-accent/15 py-3 md:py-5 px-6 shadow-[0_15px_40px_rgba(0,0,0,0.06)] will-change-transform select-none"
           >
             {/* Header */}
-            <div className="mb-3 flex items-center gap-4">
-              <div className="flex h-10 md:h-12 w-10 md:w-12 items-center justify-center rounded-md bg-[#DFE8C6]">
+            <div className="mb-2 md:mb-3 flex items-center gap-4">
+              <div className="flex h-8 md:h-12 w-8 md:w-12 items-center justify-center rounded-md bg-[#DFE8C6]">
                 <IoLeafOutline
                   className="text-[#214734]"
-                  size={22}
+                  size={18}
                 />
               </div>
 
-              <h3 className="text-[18px] md:text-[20px] font-semibold text-[#173A2C]">
+              <h3 className="text-[15px] md:text-[20px]  font-semibold text-[#173A2C]">
                 {card.title}
               </h3>
             </div>
 
             {/* Description */}
-            <p className="pera leading-7 text-[#5E7168]">
+            <p className="pera md:leading-7 text-[#5E7168] leading-5">
               {card.description}
             </p>
           </div>

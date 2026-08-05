@@ -130,7 +130,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
         </div>
       </div>
 
-      <div className="mt-10 flex items-center justify-center gap-3 sm:gap-4">
+      <div className="mt-10 flex items-center justify-center gap-1 sm:gap-4">
         {testimonials.map((testimonial, index) => {
           const isActive = index === current;
 
