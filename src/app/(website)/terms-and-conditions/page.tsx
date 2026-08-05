@@ -1,12 +1,13 @@
 import HeroBanner from '@/website/components/common/HeroBanner'
 import Policies from '@/website/components/common/Policies'
-import { disclaimerData, disclaimerHeroData } from '@/website/lib/data/disclaimer'
+import { termsData, termsHeroData } from '@/website/lib/data/terms'
 
 const page = () => {
   return (
     <main>
-        <HeroBanner data={disclaimerHeroData} />
-        <Policies data={disclaimerData} />
+        <HeroBanner data={termsHeroData} />
+
+        <Policies data={termsData} />
     </main>
   )
 }

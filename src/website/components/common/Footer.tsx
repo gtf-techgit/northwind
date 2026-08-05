@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { SVGProps } from "react";
 import Logo from "./Logo";
+import Contact from "../pages/home/Contact";
+import { contactData } from "@/website/lib/data/home";
 
 const quickLinks = [
   { label: "Construction Update", href: "/construction-update" },
@@ -72,6 +74,8 @@ const FooterColumn = ({ title, children }: FooterColumnProps) => (
 
 const Footer = () => {
   return (
+    <>
+    <Contact data={contactData}/>
     <footer className="relative overflow-hidden bg-page pt-20 pb-8">
       <Image
         src="/images/footer/cloud.png"
@@ -201,6 +205,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

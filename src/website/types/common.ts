@@ -10,3 +10,8 @@ export interface HeroData {
   title?: string;
   media?: HeroMedia;
 }
+
+export interface PolicyData {
+  heading: string;
+  content: string;
+}
