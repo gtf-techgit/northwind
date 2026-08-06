@@ -4,8 +4,10 @@ export const termsHeroData: HeroData = {
   title: "Terms & Conditions",
   media: {
     type: "image",
-    desktop: "/pages/policies/terms.jpg",
-    mobile: "/pages/policies/terms.jpg",
+    files: {
+      desktop_file: "/pages/policies/terms.jpg",
+      mobile_file: "/pages/policies/terms.jpg",
+    },
     alt: "Terms & Conditions",
   },
 };

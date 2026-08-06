@@ -1,5 +1,6 @@
 import {
   BrnadStoryProps,
+  LeaderShipProps,
   MissionVisionProps,
   OverViewProps,
 } from "@/website/types/aboutUs";
@@ -81,6 +82,41 @@ export const BrandStory: BrnadStoryProps = {
     },
     {
       desc: "In the realm where the North Wind blows, A tale of real estate unfolds. Not just bricks and mortar, we decree, But soulful spaces where dreams roam free.",
+    },
+  ],
+};
+
+export const LeaderShip: LeaderShipProps = {
+  title: {
+    heading: "Visionaries in action",
+  },
+  description: {
+    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+  },
+  listing: [
+    {
+      name: "Manoj Garg",
+      designation: "chief executive officer",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      files: {
+        desktop_file: "pages/about-us/leadership/leader1.webp",
+      },
+    },
+    {
+      name: "Manoj Garg",
+      designation: "chief executive officer",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      files: {
+        desktop_file: "pages/about-us/leadership/leader1.webp",
+      },
+    },
+    {
+      name: "Manoj Garg",
+      designation: "chief executive officer",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      files: {
+        desktop_file: "pages/about-us/leadership/leader1.webp",
+      },
     },
   ],
 };

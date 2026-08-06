@@ -4,8 +4,10 @@ export const privacyHeroData: HeroData = {
   title: "Privacy Policy",
   media: {
     type: "image",
-    desktop: "/pages/policies/privacy.jpg",
-    mobile: "/pages/policies/privacy.jpg",
+    files: {
+      desktop_file: "/pages/policies/privacy.jpg",
+      mobile_file: "/pages/policies/privacy.jpg",
+    },
     alt: "Privacy Policy",
   },
 };

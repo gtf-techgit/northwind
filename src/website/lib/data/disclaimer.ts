@@ -4,8 +4,10 @@ export const disclaimerHeroData: HeroData = {
   title: "Disclaimer",
   media: {
     type: "image",
-    desktop: "/pages/policies/disclaimer.jpg",
-    mobile: "/pages/policies/disclaimer.jpg",
+    files: {
+      desktop_file: "/pages/policies/disclaimer.jpg",
+      mobile_file: "/pages/policies/disclaimer.jpg",
+    },
     alt: "Disclaimer",
   },
 };
