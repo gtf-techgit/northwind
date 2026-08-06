@@ -54,10 +54,6 @@
 }
 
 @theme inline {
-  /* Fonts */
-  --font-body: var(--font-raleway);
-  --font-heading: var(--font-branley);
-
   /* Colors */
   --color-primary: var(--color-primary);
   --color-secondary: var(--color-secondary);
@@ -81,7 +77,7 @@ html {
 body {
   background: var(--color-background);
   color: var(--color-text-primary);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-raleway), sans-serif;
   overflow-x: hidden;
   font-size: 14px;
 }
@@ -89,11 +85,11 @@ body {
  /* Typography Utilities */
 
 .font-heading {
-  font-family: var(--font-heading), serif;
+  font-family: var(--font-branley), serif;
 }
 
 .font-body {
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-raleway), sans-serif;
 }
 
  /* Text Colors */
