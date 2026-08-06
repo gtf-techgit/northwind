@@ -10,6 +10,7 @@ import Paragraph from "@/website/components/ui/Paragraph";
 import type { LeaderShipProps } from "@/website/types/aboutUs";
 
 import "swiper/css";
+import useZoomInEntrance from "@/website/hooks/useZoomInEntrance";
 
 interface LeaderShipSectionProps {
   data: LeaderShipProps;
@@ -18,11 +19,25 @@ interface LeaderShipSectionProps {
 const LeaderShip = ({ data }: LeaderShipSectionProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const swiperRef = useRef<SwiperClass | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const swiperContainerRef = useRef<HTMLDivElement>(null);
 
   const listing = data.listing || [];
 
+  useZoomInEntrance(swiperContainerRef, sectionRef, {
+    y: 120,
+    scale: 0.5,
+    opacity: 0,
+    start: "top 85%",
+    end: "bottom 90%",
+    scrub: 0.5,
+  });
+
   return (
-    <section className="relative section-padding bg-background overflow-hidden py-16 md:py-24">
+    <section
+      ref={sectionRef}
+      className="relative section-padding bg-background overflow-hidden py-16 md:py-24"
+    >
       <div className="container-custom relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
@@ -46,7 +61,7 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
         {/* Left Side Blend Gradient (Soft fade for left edge) */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-16 sm:w-28 bg-gradient-to-r from-background to-transparent" />
 
-        <div className="container-custom">
+        <div ref={swiperContainerRef} className="container-custom">
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -108,7 +123,7 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
                     </div>
 
                     {/* Right Leader Cutout Image - Head pops out past card top */}
-                    <div className="w-full md:w-3/6 absolute right-0 bottom-0 pointer-events-none">
+                    <div className="w-full md:w-3/6 lg:absolute right-0 bottom-0 pointer-events-none">
                       <Image
                         src={imageSrc}
                         alt={item.name}
