@@ -91,31 +91,39 @@ export const LeaderShip: LeaderShipProps = {
     heading: "Visionaries in action",
   },
   description: {
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
   },
   listing: [
     {
       name: "Manoj Garg",
-      designation: "chief executive officer",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      designation: "Chief Executive Officer",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
       files: {
-        desktop_file: "pages/about-us/leadership/leader1.webp",
+        desktop_file: "/pages/about-us/leadership/leader1.webp",
+      },
+    },
+    {
+      name: "Shaurya Garg",
+      designation: "Marketing & Sales Director",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      files: {
+        desktop_file: "/pages/about-us/leadership/leader1.webp",
       },
     },
     {
       name: "Manoj Garg",
-      designation: "chief executive officer",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      designation: "Chief Executive Officer",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
       files: {
-        desktop_file: "pages/about-us/leadership/leader1.webp",
+        desktop_file: "/pages/about-us/leadership/leader1.webp",
       },
     },
     {
-      name: "Manoj Garg",
-      designation: "chief executive officer",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
+      name: "Shaurya Garg",
+      designation: "Marketing & Sales Director",
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text",
       files: {
-        desktop_file: "pages/about-us/leadership/leader1.webp",
+        desktop_file: "/pages/about-us/leadership/leader1.webp",
       },
     },
   ],

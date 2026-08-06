@@ -7,7 +7,9 @@ import {
   aboutUsHeroData,
   missionVisionData,
   BrandStory,
+  LeaderShip as LeaderShipData,
 } from "@/website/lib/data/aboutUs";
+import LeaderShip from "@/website/components/pages/about-us/LeaderShip";
 
 const page = () => {
   return (
@@ -16,6 +18,7 @@ const page = () => {
       <Overview data={aboutOverviewData} />
       <MissionVision data={missionVisionData} />
       <BrandStoryComponent data={BrandStory} />
+      <LeaderShip data={LeaderShipData} />
     </main>
   );
 };
