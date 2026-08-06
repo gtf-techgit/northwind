@@ -82,161 +82,336 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
 
       /* ---------------- Master Timeline ---------------- */
 
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "none",
-        },
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          // end: "+=260%",
-           end: "+=200%",
-          pin: true,
-          scrub: 2,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+//       const tl = gsap.timeline({
+//         defaults: {
+//           ease: "none",
+//         },
+//         scrollTrigger: {
+//           trigger: sectionRef.current,
+//           start: "top top",
+//           // end: "+=260%",
+//            end: "+=260%",
+//           pin: true,
+//           scrub: 2,
+//           anticipatePin: 1,
+//           invalidateOnRefresh: true,
+//         },
+//       });
 
-      /* ===========================================================
-         PROJECT EXIT
-      =========================================================== */
+//       /* ===========================================================
+//          PROJECT EXIT
+//       =========================================================== */
 
-      tl.to({}, { duration: 4 },0);
-      tl.to(
-        projectHeadingRef.current,
-        {
-          yPercent: -140,
-          opacity: 0,
-          scale: 0.92,
-          duration: 1.2,
-          ease: "power2.inOut",
-        },
-        0
-      );
+//       tl.to({}, { duration: 4 },0);
+//       tl.to(
+//         projectHeadingRef.current,
+//         {
+//           yPercent: -140,
+//           opacity: 0,
+//           scale: 0.92,
+//           duration: 1.2,
+//           ease: "power2.inOut",
+//         },
+//         0
+//       );
 
-      tl.to(
-        buildingRef.current,
-        {
-          yPercent: 140,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power2.inOut",
-        },
-        0
-      );
+//       tl.to(
+//         buildingRef.current,
+//         {
+//           yPercent: 140,
+//           opacity: 0,
+//           duration: 1.2,
+//           ease: "power2.inOut",
+//         },
+//         0
+//       );
 
-      /* ===========================================================
-         VALUES HEADING
-      =========================================================== */
+//       /* ===========================================================
+//          VALUES HEADING
+//       =========================================================== */
 
-      tl.to(
-        valuesHeadingRef.current,
-        {
-          yPercent: 0,
-          duration: 0.4,
-          opacity: 1,
-          ease: "power2.in",
-        },
-        0.4
-      );
-      tl.to(
-        shapeRef.current,
-        {
-          delay: 0.6,
-          opacity: 1,
-          scale: 0.8,
-          rotation: 90,
-          duration: 1.9,
-          ease: "power3.out",
-        },
-        0.18
-      );
+//       tl.to(
+//         valuesHeadingRef.current,
+//         {
+//           yPercent: 0,
+//           duration: 0.4,
+//           opacity: 1,
+//           ease: "power2.in",
+//         },
+//         0.4
+//       );
+//       tl.to(
+//         shapeRef.current,
+//         {
+//           delay: 0.6,
+//           opacity: 1,
+//           scale: 0.8,
+//           rotation: 90,
+//           duration: 1.9,
+//           ease: "power3.out",
+//         },
+//         0.18
+//       );
 
-      /* ===========================================================
-         SHAPE
-      =========================================================== */
+//       /* ===========================================================
+//          SHAPE
+//       =========================================================== */
 
-      tl.to(
-        shapeRef.current,
-        {
-          delay: 1.6,
-          scale: 0.4,
-          rotation: -90,
-          x: 0,
-          y: 0,
-          duration: 2,
-          ease: "power3.inOut",
-        },
-        0.25
-      );
+//       tl.to(
+//         shapeRef.current,
+//         {
+//           delay: 1.6,
+//           scale: 0.4,
+//           rotation: -90,
+//           x: 0,
+//           y: 0,
+//           duration: 2,
+//           ease: "power3.inOut",
+//         },
+//         0.25
+//       );
 
-      tl.to(
-        valuesHeadingRef.current,
-        {
-          opacity: 0,
-          yPercent: -140,
-          duration: 0.4,
-          ease: "power2.in",
-        },
-        1.6
-      );
-
-
+//       tl.to(
+//         valuesHeadingRef.current,
+//         {
+//           opacity: 0,
+//           yPercent: -140,
+//           duration: 0.4,
+//           ease: "power2.in",
+//         },
+//         1.6
+//       );
 
 
-      /* ===========================================================
-         RINGS
-      =========================================================== */
 
-      tl.to(
-        ringsRef.current,
-        {
-          delay: 1.5,
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-        },
-        0.25
-      );
 
-      /* ===========================================================
-         CARDS BURST
-      =========================================================== */
+//       /* ===========================================================
+//          RINGS
+//       =========================================================== */
 
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
+//       tl.to(
+//         ringsRef.current,
+//         {
+//           delay: 1.5,
+//           opacity: 1,
+//           scale: 1,
+//           duration: 1,
+//           ease: "power3.out",
+//         },
+//         0.25
+//       );
 
-        const position = cardPositions[index];
-        const targetX = isMobileView ? position.mobilex : position.x;
-        const targetY = isMobileView ? position.mobiley : position.y;
+//       /* ===========================================================
+//          CARDS BURST
+//       =========================================================== */
 
-        tl.to(
-          card,
-          {
-            delay: 2.3,
-            opacity: 1,
-            scale: 1,
-            x: targetX,
-            y: targetY,
-            ease: "none",
-            duration: 1.5,
-          },
-          0.42
-        );
+//       cardRefs.current.forEach((card, index) => {
+//         if (!card) return;
 
-        tl.to(
-          card,
-          {
-            scale: 1,
-            ease: "power2.out",
-            duration: 0.18,
-          },
-          0.62
-        );
-      });
+//         const position = cardPositions[index];
+//         const targetX = isMobileView ? position.mobilex : position.x;
+//         const targetY = isMobileView ? position.mobiley : position.y;
 
+//         tl.to(
+//           card,
+//           {
+//             delay: 2.3,
+//             opacity: 1,
+//             scale: 1,
+//             x: targetX,
+//             y: targetY,
+//             ease: "none",
+//             duration: 1.5,
+//           },
+//           0.42
+//         );
+
+//         tl.to(
+//           card,
+//           {
+//             scale: 1,
+//             ease: "power2.out",
+//             duration: 0.18,
+//           },
+//           0.62
+//         );
+//       });
+//      tl.to({}, {
+//   duration: 1,
+// }, ">");
+
+
+const tl = gsap.timeline({
+  defaults: {
+    ease: "none",
+  },
+  scrollTrigger: {
+    trigger: sectionRef.current,
+    start: "top top",
+    end: "+=320%", // increase so hold is noticeable
+    pin: true,
+    scrub: 2,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+  },
+});
+
+/* ===========================================================
+   PROJECT EXIT
+=========================================================== */
+
+tl.to({}, { duration: 4 }, 0);
+
+tl.to(
+  projectHeadingRef.current,
+  {
+    yPercent: -140,
+    opacity: 0,
+    scale: 0.92,
+    duration: 1.2,
+    ease: "power2.inOut",
+  },
+  0
+);
+
+tl.to(
+  buildingRef.current,
+  {
+    yPercent: 140,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power2.inOut",
+  },
+  0
+);
+
+/* ===========================================================
+   VALUES HEADING ENTER
+=========================================================== */
+
+tl.to(
+  valuesHeadingRef.current,
+  {
+    delay: 0.2,
+    opacity: 1,
+    yPercent: 0,
+    duration: 0.4,
+    ease: "power2.out",
+  },
+  0.4
+);
+
+/* ===========================================================
+   SHAPE ENTER
+=========================================================== */
+
+tl.to(
+  shapeRef.current,
+  {
+    opacity: 1,
+    scale: 0.8,
+    rotation: 90,
+    duration: 1.9,
+    ease: "power3.out",
+  },
+  1
+);
+
+/* ===========================================================
+   SHAPE SHRINK
+=========================================================== */
+
+tl.to(
+  shapeRef.current,
+  {
+    scale: 0.4,
+    rotation: -90,
+    x: 0,
+    y: 0,
+    duration: 2,
+    ease: "power3.inOut",
+  },
+  2.8
+);
+
+/* ===========================================================
+   VALUES HEADING EXIT
+=========================================================== */
+
+tl.to(
+  valuesHeadingRef.current,
+  {
+    opacity: 0,
+    yPercent: -140,
+    duration: 0.4,
+    ease: "power2.in",
+  },
+  2.8
+);
+
+/* ===========================================================
+   RINGS
+=========================================================== */
+
+tl.to(
+  ringsRef.current,
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 1,
+    ease: "power3.out",
+  },
+  3
+);
+
+/* ===========================================================
+   CARDS
+=========================================================== */
+
+cardRefs.current.forEach((card, index) => {
+  if (!card) return;
+
+  const position = cardPositions[index];
+  const targetX = isMobileView ? position.mobilex : position.x;
+  const targetY = isMobileView ? position.mobiley : position.y;
+
+  tl.to(
+    card,
+    {
+      opacity: 1,
+      scale: 1,
+      x: targetX,
+      y: targetY,
+      duration: 1.8,
+      ease: "power3.out",
+    },
+    4.2
+  );
+
+  tl.to(
+    card,
+    {
+      scale: 1,
+      duration: 0.2,
+      ease: "power2.out",
+    },
+    5.7
+  );
+});
+
+/* ===========================================================
+   HOLD AFTER CARDS
+=========================================================== */
+
+tl.to(
+  {},
+  {
+    duration: 2, // section will stay pinned
+  },
+  6
+);
+
+console.log("Timeline Duration:", tl.duration());
     }, sectionRef);
 
     return () => ctx.revert();
@@ -301,7 +476,7 @@ const ProjectValuesSequence = ({ data }: ProjectValuesSequenceProps) => {
         <Rings ref={ringsRef} />
 
         {/* Shape */}
-        <div ref={shapeRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 origin-center"
+        <div ref={shapeRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  z-20 origin-center"
         >
           <Image
             src={data.values.shapeImage}

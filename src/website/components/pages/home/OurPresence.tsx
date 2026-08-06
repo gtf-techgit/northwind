@@ -108,7 +108,7 @@ const OurPresence = ({ data }: OurPresenceProps) => {
                             alt="Northwind estate illustration"
                             width={400}
                             height={500}
-                            className="object-contain  h-auto mx-auto object-bottom"
+                            className="object-contain md:w-80 2xl:w-100 mx-auto object-bottom"
                         />
                     </div>
                 </div>
