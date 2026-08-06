@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiPaperclip } from "react-icons/fi";
 import SectionHeader from "../../ui/SectionHeader";
 import Button from "../../ui/Button";
@@ -9,8 +9,20 @@ import { StartJourneyData } from "@/website/types/careers";
 const inputClass =
   "w-full rounded-full border border-[#0D382929] bg-[#F0F0DB] px-6 py-4 font-body text-sm text-primary placeholder:text-primary/60 outline-none transition-colors focus:border-primary/30";
 
-const StartJourney = ({ data }: { data: StartJourneyData }) => {
+interface StartJourneyProps {
+  data: StartJourneyData;
+  selectedPosition?: string;
+}
+
+const StartJourney = ({ data, selectedPosition }: StartJourneyProps) => {
   const [fileName, setFileName] = useState("");
+  const [position, setPosition] = useState(selectedPosition ?? "");
+
+  useEffect(() => {
+    if (selectedPosition) {
+      setPosition(selectedPosition);
+    }
+  }, [selectedPosition]);
 
   return (
     <section className="relative w-full section-padding">
@@ -56,6 +68,8 @@ const StartJourney = ({ data }: { data: StartJourneyData }) => {
               name="position"
               placeholder="Position Applying For *"
               required
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
               className={inputClass}
             />
 

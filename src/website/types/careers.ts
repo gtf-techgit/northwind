@@ -10,9 +10,19 @@ export interface WhyJoinUsData {
     imageAlt?: string;
     items: WhyJoinUsItem[];
 }
+export interface JobItem {
+    title: string;
+    description: string;
+    shortDescription: string;
+    type: string;
+    location: string;
+    preferredBackground?: string[];
+    whatWeOffer?: string[];
+}
 export interface JoinTeamData {
     heading: string;
-    paragraph: string;   
+    paragraph: string;
+    jobs: JobItem[];
 }
 export interface StartJourneyData {
     heading: string;

@@ -1,4 +1,4 @@
-import { JoinTeamData, StartJourneyData, WhyJoinUsData } from "@/website/types/careers";
+import { JobItem, JoinTeamData, StartJourneyData, WhyJoinUsData } from "@/website/types/careers";
 import { HeroData } from "@/website/types/common";
 
 export const careerHeroData: HeroData = {
@@ -36,10 +36,41 @@ export const whyjoinus: WhyJoinUsData = {
   ],
 };
 
+const jobs: JobItem[] = [
+  {
+    title: "Full-Stack Web Designer",
+    shortDescription:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset.",
+    type: "Full-time",
+    location: "Location",
+  },
+  {
+    title: "Full-Stack Web Designer",
+    shortDescription:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset.",
+    type: "Full-time",
+    location: "Location",
+  },
+  {
+    title: "Full-Stack Web Designer",
+    shortDescription:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset.",
+    type: "Full-time",
+    location: "Location",
+  },
+];
+
 export const jointeam: JoinTeamData = {
   heading: "Join Our Growing Team",
   paragraph:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  jobs,
 };
 export const startJourney: StartJourneyData = {
   heading: "Start Your Journey With Us",
