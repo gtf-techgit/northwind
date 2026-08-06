@@ -310,7 +310,7 @@ tl.to(
   {
     opacity: 1,
     scale: 0.8,
-    rotation: 90,
+    rotation: 0,
     duration: 1.9,
     ease: "power3.out",
   },
@@ -325,7 +325,7 @@ tl.to(
   shapeRef.current,
   {
     scale: 0.4,
-    rotation: -90,
+    rotation: -35,
     x: 0,
     y: 0,
     duration: 2,
@@ -476,8 +476,9 @@ console.log("Timeline Duration:", tl.duration());
         <Rings ref={ringsRef} />
 
         {/* Shape */}
-        <div ref={shapeRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  z-20 origin-center"
+        <div ref={shapeRef} className="absolute left-1/2 top-1/2 -translate-x-1/2  -translate-y-1/2  z-20 origin-center"
         >
+          {/* <div className="w-50 h-50 bg-primary rounded-full"></div> */}
           <Image
             src={data.values.shapeImage}
             alt=""
