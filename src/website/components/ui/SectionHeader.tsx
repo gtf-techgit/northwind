@@ -2,6 +2,7 @@ import { ButtonHTMLAttributes, ReactNode, forwardRef } from "react";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import Button from "./Button";
+import SlideIn from "./SlideIn";
 
 interface SectionHeaderProps {
   heading?: ReactNode;
@@ -32,21 +33,23 @@ const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
   ) => {
     return (
       <div ref={ref} className={`space-y-5 ${className}`}>
-        {heading && <Heading className={headingClassName}>{heading}</Heading>}
+        <SlideIn>
+          {heading && <Heading className={headingClassName}>{heading}</Heading>}
 
-        {paragraph && (
-          <Paragraph className={paragraphClassName}>{paragraph}</Paragraph>
-        )}
+          {paragraph && (
+            <Paragraph className={paragraphClassName}>{paragraph}</Paragraph>
+          )}
 
-        {buttonText && (
-          <Button
-            href={buttonHref}
-            className={`mt-4 font-semibold cursor-pointer ${buttonClassName}`}
-            {...buttonProps}
-          >
-            {buttonText}
-          </Button>
-        )}
+          {buttonText && (
+            <Button
+              href={buttonHref}
+              className={`mt-4 font-semibold cursor-pointer ${buttonClassName}`}
+              {...buttonProps}
+            >
+              {buttonText}
+            </Button>
+          )}
+        </SlideIn>
       </div>
     );
   }

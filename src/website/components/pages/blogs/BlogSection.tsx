@@ -9,6 +9,7 @@ import "swiper/css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import SectionHeader from "../../ui/SectionHeader";
 import { BlogItem, BlogSectionData } from "@/website/types/blogs";
+import ZoomOut from "../../ui/ZoomOut";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -108,11 +109,10 @@ const BlogSection = ({ data, items }: BlogSectionProps) => {
                   type="button"
                   onClick={() => setCurrentPage(page)}
                   aria-label={`Go to page ${page}`}
-                  className={`flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full font-body text-sm transition-colors md:h-10 md:w-10 ${
-                    currentPage === page
-                      ? "bg-primary text-white"
-                      : "bg-primary/5 text-primary/70 hover:text-primary"
-                  }`}
+                  className={`flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full font-body text-sm transition-colors md:h-10 md:w-10 ${currentPage === page
+                    ? "bg-primary text-white"
+                    : "bg-primary/5 text-primary/70 hover:text-primary"
+                    }`}
                 >
                   {page}
                 </button>
@@ -138,7 +138,8 @@ const BlogSection = ({ data, items }: BlogSectionProps) => {
 const FeaturedBlogCard = ({ item }: { item: BlogItem }) => (
   <Link href={`/blogs/${item.slug}`} className="block">
     <div className="relative h-55 w-full overflow-hidden rounded-xl-custom shadow-lg-custom sm:h-85 lg:h-115">
-      <Image src={item.image} alt={item.title} fill className="object-cover" />
+      <ZoomOut className="absolute inset-0 h-full w-full">
+        <Image src={item.image} alt={item.title} fill className="object-cover" /></ZoomOut>
       <span className="absolute right-4 top-4 rounded-full bg-black/50 px-3 py-1 text-xs font-body text-white backdrop-blur-sm">
         {item.date}
       </span>
@@ -157,12 +158,14 @@ const FeaturedBlogCard = ({ item }: { item: BlogItem }) => (
 const BlogCard = ({ item }: { item: BlogItem }) => (
   <Link href={`/blogs/${item.slug}`} className="block">
     <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg-custom">
-      <Image
-        src={item.image}
-        alt={item.title}
-        fill
-        className="object-cover transition-transform duration-500 hover:scale-105"
-      />
+      <ZoomOut className="absolute inset-0 h-full w-full">
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </ZoomOut>
       <span className="absolute right-3 top-3 rounded-full bg-black/50 px-2.5 py-1 text-[11px] font-body text-white backdrop-blur-sm">
         {item.date}
       </span>

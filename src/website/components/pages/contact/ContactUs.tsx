@@ -2,6 +2,7 @@ import Image from "next/image";
 import SectionHeader from "../../ui/SectionHeader";
 import SocialLinks from "../../common/SocialLinks";
 import type { ContactInfoItem, ContactUsData } from "@/website/types/contact";
+import ZoomOut from "../../ui/ZoomOut";
 
 interface ContactUsProps {
   data: ContactUsData;
@@ -26,15 +27,17 @@ const ContactUs = ({ data }: ContactUsProps) => {
 
   return (
     <section className="relative w-full section-padding">
-         <div  className="absolute inset-0 flex justify-center z-0 items-center">
-                    <Image
-                    src={image.bgpattern}
-                    alt='bgpattern'
-                    width={500}
-                    height={500}
-                    className='mt-40'
-                    />
-                </div>
+      <div className="absolute inset-0 flex justify-center z-0 items-center">
+        <ZoomOut>
+          <Image
+            src={image.bgpattern}
+            alt='bgpattern'
+            width={500}
+            height={500}
+            className='mt-40'
+          />
+        </ZoomOut>
+      </div>
       <div className="container-custom">
         <SectionHeader
           className="mx-auto max-w-150 text-center"
@@ -49,14 +52,18 @@ const ContactUs = ({ data }: ContactUsProps) => {
             ))}
           </div>
 
-          <div className="order-1 flex justify-center md:order-2">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={420}
-              height={534}
-              className="h-auto w-full z-1 max-w-[320px] rounded-xl-custom object-cover md:max-w-95"
-            />
+          <div className="order-1 flex justify-center md:order-2 w-full z-20">
+            <div className="overflow-hidden rounded-xl-custom max-w-[320px] md:max-w-95 w-full">
+              <ZoomOut className="w-full">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={420}
+                  height={534}
+                  className="h-full w-full z-1 object-cover"
+                />
+              </ZoomOut>
+            </div>
           </div>
 
           <div className="order-3 flex flex-col items-end  gap-12 text-center md:text-left">

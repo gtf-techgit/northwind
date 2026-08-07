@@ -17,11 +17,11 @@ const HomeFinancing = ({ data }: { data: HomeFinancingData }) => {
         />
       </div>
 
-      <div className="marquee-wrapper relative mt-10 w-full overflow-hidden md:mt-16">
+      <div className="group marquee-wrapper relative mt-10 w-full overflow-hidden md:mt-16">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-background to-transparent md:w-32" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-background to-transparent md:w-32" />
 
-        <div className="marquee-content flex w-max gap-5 md:gap-6">
+        <div className="marquee-content animate-marquee-left group-hover:[animation-play-state:paused] flex w-max gap-5 md:gap-6" style={{ animationDuration: '30s' }}>
           {marqueeCards.map((card, index) => (
             <div
               key={index}
