@@ -15,7 +15,7 @@ const quickLinks = [
 const companyLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
-  { label: "Project", href: "/project" },
+  { label: "Projects", href: "/projects" },
   { label: "Blogs", href: "/blogs" },
   { label: "Careers", href: "/careers" },
   { label: "Award", href: "/award" },
@@ -142,7 +142,8 @@ const Footer = () => {
           </div>
 
           <div className="mt-16  pt-6 text-center font-body text-xs text-muted md:text-sm">
-            © {new Date().getFullYear()} Northwind. All rights reserved. &nbsp;|&nbsp; Created By:{" "}
+            © {new Date().getFullYear()} Northwind. All rights reserved.
+            &nbsp;|&nbsp; Created By:{" "}
             <Link
               href="https://gtftechnologies.com"
               target="_blank"
