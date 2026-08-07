@@ -11,6 +11,7 @@ import type { LeaderShipProps } from "@/website/types/aboutUs";
 
 import "swiper/css";
 import useZoomInEntrance from "@/website/hooks/useZoomInEntrance";
+import { IoAdd } from "react-icons/io5";
 
 interface LeaderShipSectionProps {
   data: LeaderShipProps;
@@ -18,6 +19,7 @@ interface LeaderShipSectionProps {
 
 const LeaderShip = ({ data }: LeaderShipSectionProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const swiperRef = useRef<SwiperClass | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const swiperContainerRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,7 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
     >
       <div className="container-custom relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+        <div className="text-center max-w-3xl mx-auto  md:mb-20">
           {data.title?.heading && (
             <Heading className="font-heading text-4xl sm:text-5xl lg:text-[52px] text-primary leading-tight font-normal capitalize">
               {data.title.heading}
@@ -55,11 +57,13 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
       </div>
 
       {/* Swiper Carousel Section with Edge Blend Gradient */}
-      <div className="relative w-full overflow-hidden pt-25 pb-6">
-        {/* Right Side Blend Gradient (Seamless blend as seen in Figma) */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-40 sm:w-64 md:w-96 bg-gradient-to-l from-background via-background/80 to-transparent" />
-        {/* Left Side Blend Gradient (Soft fade for left edge) */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-16 sm:w-28 bg-gradient-to-r from-background to-transparent" />
+      <div className="relative w-full overflow-hidden pt-18 lg:pt-25 pb-6">
+        <div className="lg:block hidden">
+          {/* Right Side Blend Gradient (Seamless blend as seen in Figma) */}
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-40 sm:w-64 md:w-96 bg-gradient-to-l from-background via-background/80 to-transparent" />
+          {/* Left Side Blend Gradient (Soft fade for left edge) */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-16 sm:w-28 bg-gradient-to-r from-background to-transparent" />
+        </div>
 
         <div ref={swiperContainerRef} className="container-custom">
           <Swiper
@@ -94,6 +98,7 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
           >
             {listing.map((item, index) => {
               const isActive = activeIndex === index;
+              const isExpanded = expandedIndex === index;
               const imageSrc =
                 item.files?.desktop_file ||
                 "/pages/about-us/leadership/leader1s.webp";
@@ -102,28 +107,63 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
                 <SwiperSlide key={index} className="h-auto">
                   {/* Card Container with pop-out image */}
                   <div
-                    className={`relative w-full rounded-[32px] sm:rounded-[40px] bg-[#ACC78C1A] p-8 sm:p-10 md:p-12 transition-all duration-500 ease-out flex flex-col md:flex-row items-center justify-between min-h-[380px] sm:min-h-[420px] ${
+                    className={`relative w-full rounded-[32px] sm:rounded-[40px] bg-[#ACC78C1A] p-8 sm:p-10 md:p-12 transition-all duration-500 ease-out flex flex-col md:flex-row items-center justify-between min-h-[300px] sm:min-h-[420px] ${
                       isActive ? "opacity-100" : "opacity-75"
                     }`}
                   >
+                    {/* Mobile Image */}
+                    <div className="lg:hidden block w-full pointer-events-none relative -top-16 right-0">
+                      <Image
+                        src={imageSrc}
+                        alt={item.name}
+                        width={480}
+                        height={560}
+                        priority={index === 0}
+                        className="w-auto object-contain object-bottom drop-shadow-sm select-none"
+                      />
+                    </div>
+
                     {/* Left Text Content */}
-                    <div className="w-full md:w-3/6 z-10 pr-0 md:pr-6">
-                      <h3 className="font-heading text-3xl sm:text-4xl lg:text-[40px] text-[#1E382B] leading-tight font-normal">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 sm:mt-1.5 font-body text-sm sm:text-base text-[#7A8B73] font-normal">
-                        {item.designation}
-                      </p>
+                    <div className="w-full md:w-3/6 z-10 pr-0 md:pr-6 flex justify-between items-center">
+                      <div className="left lg:w-full w-[80%]">
+                        <h3 className="font-heading text-3xl sm:text-4xl lg:text-[40px] text-[#1E382B] leading-tight font-normal">
+                          {item.name}
+                        </h3>
+                        <p className="mt-1 sm:mt-1.5 font-body text-sm sm:text-base text-[#7A8B73] font-normal">
+                          {item.designation}
+                        </p>
 
-                      <div className="w-full h-[1px] bg-[#0D3829]/12 my-4 sm:my-6" />
+                        <div className="w-full lg:h-[1px] bg-[#0D3829]/12 my-4 sm:my-6" />
 
-                      <p className="font-body text-sm sm:text-base leading-relaxed text-[#7A8B73] max-w-md lg:max-w-lg">
-                        {item.desc}
-                      </p>
+                        <p
+                          className={`font-body text-sm sm:text-base leading-relaxed text-[#7A8B73] max-w-md lg:max-w-lg ${
+                            isExpanded ? "block" : "hidden"
+                          } lg:block`}
+                        >
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div className="right lg:hidden shrink-0 pl-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedIndex(isExpanded ? null : index)
+                          }
+                          aria-label="Toggle details"
+                          className="w-10 h-10 rounded-full border border-[#0D3829]/20 bg-[#1E382B]/5 flex items-center justify-center text-[#1E382B] transition-transform duration-300 hover:bg-[#1E382B]/10 active:scale-95 cursor-pointer"
+                        >
+                          <IoAdd
+                            className={`w-6 h-6 transition-transform duration-300 ${
+                              isExpanded ? "rotate-45" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Right Leader Cutout Image - Head pops out past card top */}
-                    <div className="w-full md:w-3/6 lg:absolute right-0 bottom-0 pointer-events-none">
+
+                    <div className="lg:block hidden w-full md:w-3/6 lg:absolute right-0 bottom-0 pointer-events-none">
                       <Image
                         src={imageSrc}
                         alt={item.name}
