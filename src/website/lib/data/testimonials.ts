@@ -9,15 +9,17 @@ export const testimonialHeroData: HeroData = {
   title: "Testimonials",
   media: {
     type: "image",
-    desktop: "/pages/testimonials/banner.jpg",
-    mobile: "/pages/testimonials/banner.jpg",
+    files: {
+      desktop_file: "/pages/testimonials/banner.jpg",
+      mobile_file: "/pages/testimonials/banner.jpg",
+    },
     alt: "Testimonials",
   },
 };
 
 export const testimonialSectionData: TestimonialSectionData = {
-    heading: "Testimonials",
-    paragraph: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+  heading: "Testimonials",
+  paragraph: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 }
 
 const testimonialMessage =

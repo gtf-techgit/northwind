@@ -2,20 +2,22 @@ import { HeroData } from "@/website/types/common";
 import { InvestorUpdatesData, InvestorValuesData } from "@/website/types/investor";
 
 export const investorHeroData: HeroData = {
-  title: "Investor",
-  media: {
-    type: "image",
-    desktop: "/pages/investors/banner.png",
-    mobile: "/pages/investors/banner.png",
-    alt: "Investor",
-  },
+    title: "Investor",
+    media: {
+        type: "image",
+        files: {
+            desktop_file: "/pages/investors/banner.png",
+            mobile_file: "/pages/investors/banner.png",
+        },
+        alt: "Investor",
+    },
 };
 
 export const investorValuesData: InvestorValuesData = {
     heading: "Creating Value That Lasts",
     paragraph: "We are committed to sustainable growth, responsible development, and long-term value creation for our investors, partners, and stakeholders.",
     image: "/pages/investors/value.png",
-} 
+}
 
 export const investorUpdatesData: InvestorUpdatesData = {
     heading: "Investor Updates",

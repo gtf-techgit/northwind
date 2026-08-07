@@ -5,8 +5,10 @@ export const cpHeroData: HeroData = {
   title: "Channel Partner",
   media: {
     type: "image",
-    desktop: "/pages/channel-partners/banner.png",
-    mobile: "/pages/channel-partners/banner.png",
+    files: {
+      desktop_file: "/pages/channel-partners/banner.png",
+      mobile_file: "/pages/channel-partners/banner.png",
+    },
     alt: "Channel Partner",
   },
 };

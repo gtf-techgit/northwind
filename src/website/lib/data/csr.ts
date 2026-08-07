@@ -5,8 +5,10 @@ export const csrHeroData: HeroData = {
   title: "CSR",
   media: {
     type: "image",
-    desktop: "/pages/csr/banner.jpg",
-    mobile: "/pages/csr/banner.jpg",
+    files: {
+      desktop_file: "/pages/csr/banner.jpg",
+      mobile_file: "/pages/csr/banner.jpg",
+    },
     alt: "CSR",
   },
 };

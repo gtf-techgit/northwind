@@ -5,8 +5,10 @@ export const taxBenefitHeroData: HeroData = {
   title: "Tax Benefits",
   media: {
     type: "image",
-    desktop: "/pages/tax-benefits/banner.png",
-    mobile: "/pages/tax-benefits/banner.png",
+    files: {
+      desktop_file: "/pages/tax-benefits/banner.png",
+      mobile_file: "/pages/tax-benefits/banner.png",
+    },
     alt: "Tax Benefits",
   },
 };

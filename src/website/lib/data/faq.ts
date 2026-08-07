@@ -5,8 +5,10 @@ export const faqHeroData: HeroData = {
   title: "FAQ's",
   media: {
     type: "image",
-    desktop: "/pages/faq/banner.jpg",
-    mobile: "/pages/faq/banner.jpg",
+    files: {
+      desktop_file: "/pages/faq/banner.jpg",
+      mobile_file: "/pages/faq/banner.jpg",
+    },
     alt: "Frequently Asked Questions",
   },
 };

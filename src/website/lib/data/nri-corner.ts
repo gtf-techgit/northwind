@@ -5,8 +5,10 @@ export const nriHeroData: HeroData = {
   title: "NRI Corner",
   media: {
     type: "image",
-    desktop: "/pages/nri-corner/banner.png",
-    mobile: "/pages/nri-corner/banner.png",
+    files: {
+      desktop_file: "/pages/nri-corner/banner.png",
+      mobile_file: "/pages/nri-corner/banner.png",
+    },
     alt: "NRI Corner",
   },
 };

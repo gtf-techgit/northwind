@@ -2,13 +2,17 @@ import { JobItem, JoinTeamData, StartJourneyData, WhyJoinUsData } from "@/websit
 import { HeroData } from "@/website/types/common";
 
 export const careerHeroData: HeroData = {
+
   title: "Careers",
   media: {
     type: "image",
-    desktop: "/pages/careers/banner.png",
-    mobile: "/pages/careers/banner.png",
+    files: {
+      desktop_file: "/pages/careers/banner.png",
+      mobile_file: "/pages/careers/banner.png",
+    },
     alt: "Careers",
   },
+
 };
 
 export const whyjoinus: WhyJoinUsData = {

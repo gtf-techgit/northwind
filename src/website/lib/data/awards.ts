@@ -5,8 +5,10 @@ export const awardsHeroData: HeroData = {
   title: "Awards",
   media: {
     type: "image",
-    desktop: "/pages/awards/banner.jpg",
-    mobile: "/pages/awards/banner.jpg",
+    files: {
+      desktop_file: "/pages/awards/banner.jpg",
+      mobile_file: "/pages/awards/banner.jpg",
+    },
     alt: "Awards",
   },
 };

@@ -5,15 +5,17 @@ export const blogsHeroData: HeroData = {
   title: "Blogs",
   media: {
     type: "image",
-    desktop: "/pages/blogs/banner.png",
-    mobile: "/pages/blogs/banner.png",
+    files: {
+      desktop_file: "/pages/blogs/banner.png",
+      mobile_file: "/pages/blogs/banner.png",
+    },
     alt: "Blogs",
   },
 };
 
 export const blogSectionData: BlogSectionData = {
-    heading: "Stories That Inspire Better Living",
-    paragraph: "Explore thoughtful articles on architecture, design, wellness, sustainability, and modern living. Discover ideas that enrich everyday experiences and celebrate timeless craftsmanship."
+  heading: "Stories That Inspire Better Living",
+  paragraph: "Explore thoughtful articles on architecture, design, wellness, sustainability, and modern living. Discover ideas that enrich everyday experiences and celebrate timeless craftsmanship."
 }
 
 const blogImages = [

@@ -5,15 +5,17 @@ export const galleryHeroData: HeroData = {
   title: "Gallery",
   media: {
     type: "image",
-    desktop: "/pages/gallery/banner.jpg",
-    mobile: "/pages/gallery/banner.jpg",
+    files: {
+      desktop_file: "/pages/gallery/banner.jpg",
+      mobile_file: "/pages/gallery/banner.jpg",
+    },
     alt: "Gallery",
   },
 };
 
 export const gallerySectionData: GallerySectionData = {
-    heading: "Gallery",
-    paragraph: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+  heading: "Gallery",
+  paragraph: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 }
 
 export const galleryProjects: string[] = [

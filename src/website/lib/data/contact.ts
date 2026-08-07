@@ -14,8 +14,10 @@ export const contactHeroData: HeroData = {
   title: "Contact Us",
   media: {
     type: "image",
-    desktop: "/pages/contact/banner.jpg",
-    mobile: "/pages/contact/banner.jpg",
+    files: {
+      desktop_file: "/pages/contact/banner.jpg",
+      mobile_file: "/pages/contact/banner.jpg",
+    },
     alt: "Contact Us",
   },
 };

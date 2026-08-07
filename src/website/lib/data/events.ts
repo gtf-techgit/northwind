@@ -2,13 +2,15 @@ import { HeroData } from "@/website/types/common";
 import { EventItem, EventTab, MomentsData } from "@/website/types/events";
 
 export const eventsHeroData: HeroData = {
-  title: "Events",
-  media: {
-    type: "image",
-    desktop: "/pages/events/banner.png",
-    mobile: "/pages/events/banner.png",
-    alt: "Events",
-  },
+    title: "Events",
+    media: {
+        type: "image",
+        files: {
+            desktop_file: "/pages/events/banner.png",
+            mobile_file: "/pages/events/banner.png",
+        },
+        alt: "Events",
+    },
 };
 
 export const momentsData: MomentsData = {

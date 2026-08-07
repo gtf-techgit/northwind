@@ -5,8 +5,10 @@ export const emiHeroData: HeroData = {
   title: "EMI Calculator",
   media: {
     type: "image",
-    desktop: "/pages/emi/banner.png",
-    mobile: "/pages/emi/banner.png",
+    files: {
+      desktop_file: "/pages/emi/banner.png",
+      mobile_file: "/pages/emi/banner.png",
+    },
     alt: "EMI Calculator",
   },
 };
