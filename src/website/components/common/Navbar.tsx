@@ -1,11 +1,18 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
+import Menu from "./Menu";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className="absolute top-0 left-0 z-50 flex w-full items-center justify-between px-6 py-6 md:px-12 md:py-8">
       <button
         type="button"
+        onClick={() => setMenuOpen(true)}
         className="order-2 md:order-1 rounded-full cursor-pointer border border-white/20 bg-white/10 px-4 md:px-6 py-2 md:py-2.5 text-[14px] md:text-[16px] tracking-wide text-white backdrop-blur-sm transition-colors hover:bg-white/20 font-heading"
       >
         <span className="text-slide">
@@ -30,6 +37,8 @@ const Navbar = () => {
 
         </button>
       </Link>
+
+      <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </nav>
   );
 };

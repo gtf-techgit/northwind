@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SVGProps } from "react";
+import clsx from "clsx";
 
 const LinkedInIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 16 16" fill="currentColor" {...props}>
@@ -39,7 +40,11 @@ const socialLinks = [
   { label: "X", href: "https://x.com", icon: XIcon },
 ];
 
-const SocialLinks = () => {
+interface SocialLinksProps {
+  variant?: "light" | "dark";
+}
+
+const SocialLinks = ({ variant = "light" }: SocialLinksProps) => {
   return (
     <div className="flex items-center gap-3">
       {socialLinks.map(({ label, href, icon: Icon }) => (
@@ -49,7 +54,12 @@ const SocialLinks = () => {
           aria-label={label}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-10 w-10 items-center justify-center rounded-md-custom border   duration-300 ease-in-out  border-default text-primary transition-colors hover:bg-primary hover:text-white!"
+          className={clsx(
+            "flex h-10 w-10 items-center justify-center rounded-md-custom border transition-colors duration-300 ease-in-out",
+            variant === "dark"
+              ? "border-white/20 bg-white/10 text-white hover:bg-white/20"
+              : "border-default text-primary hover:bg-primary hover:text-white!"
+          )}
         >
           <Icon className="h-4 w-4" />
         </Link>
