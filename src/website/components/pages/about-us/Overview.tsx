@@ -72,7 +72,7 @@ const Overview = ({ data }: OverviewProps) => {
           <div className="lg:col-span-7 flex flex-col justify-between ">
             <div className="">
               {data.title?.heading && (
-                <Heading className="max-w-xl font-heading leading-tight text-primary 2xl:text-5xl lg:max-w-[70%] 2xl:max-w-[50%]">
+                <Heading className="max-w-xl font-heading leading-tight text-primary 2xl:text-5xl lg:max-w-[70%] 2xl:max-w-[55%]">
                   {data.title.heading}
                 </Heading>
               )}

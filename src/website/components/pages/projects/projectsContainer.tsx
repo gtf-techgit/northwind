@@ -44,13 +44,10 @@ export default function ProjectsContainer({ projects, platters }: Props) {
           {displayProjects.length > 1 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {displayProjects.map((project) => (
-                <>
-                  {/* if projects are > 1 then ui will diff similar  */}
-                  <ProjectGridCard
-                    key={project.id || project.slug}
-                    project={project}
-                  />
-                </>
+                <ProjectGridCard
+                  key={project.id || project.slug}
+                  project={project}
+                />
               ))}
             </div>
           ) : (

@@ -12,6 +12,7 @@ import type { LeaderShipProps } from "@/website/types/aboutUs";
 import "swiper/css";
 import useZoomInEntrance from "@/website/hooks/useZoomInEntrance";
 import { IoAdd } from "react-icons/io5";
+import CustomModal from "@/website/components/common/CustomModal";
 
 interface LeaderShipSectionProps {
   data: LeaderShipProps;
@@ -19,7 +20,9 @@ interface LeaderShipSectionProps {
 
 const LeaderShip = ({ data }: LeaderShipSectionProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [selectedLeaderIndex, setSelectedLeaderIndex] = useState<number | null>(
+    null,
+  );
   const swiperRef = useRef<SwiperClass | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const swiperContainerRef = useRef<HTMLDivElement>(null);
@@ -98,7 +101,6 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
           >
             {listing.map((item, index) => {
               const isActive = activeIndex === index;
-              const isExpanded = expandedIndex === index;
               const imageSrc =
                 item.files?.desktop_file ||
                 "/pages/about-us/leadership/leader1s.webp";
@@ -135,28 +137,18 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
 
                         <div className="w-full lg:h-[1px] bg-[#0D3829]/12 my-4 sm:my-6" />
 
-                        <p
-                          className={`font-body text-sm sm:text-base leading-relaxed text-[#7A8B73] max-w-md lg:max-w-lg ${
-                            isExpanded ? "block" : "hidden"
-                          } lg:block`}
-                        >
+                        <p className="font-body text-sm sm:text-base leading-relaxed text-[#7A8B73] max-w-md lg:max-w-lg lg:block hidden">
                           {item.desc}
                         </p>
                       </div>
                       <div className="right lg:hidden shrink-0 pl-2">
                         <button
                           type="button"
-                          onClick={() =>
-                            setExpandedIndex(isExpanded ? null : index)
-                          }
-                          aria-label="Toggle details"
+                          onClick={() => setSelectedLeaderIndex(index)}
+                          aria-label="View leader details"
                           className="w-10 h-10 rounded-full border border-[#0D3829]/20 bg-[#1E382B]/5 flex items-center justify-center text-[#1E382B] transition-transform duration-300 hover:bg-[#1E382B]/10 active:scale-95 cursor-pointer"
                         >
-                          <IoAdd
-                            className={`w-6 h-6 transition-transform duration-300 ${
-                              isExpanded ? "rotate-45" : ""
-                            }`}
-                          />
+                          <IoAdd className="w-6 h-6" />
                         </button>
                       </div>
                     </div>
@@ -226,6 +218,48 @@ const LeaderShip = ({ data }: LeaderShipSectionProps) => {
           </button>
         </div>
       </div>
+
+      {/* Leader Details Modal (Mobile) */}
+      {selectedLeaderIndex !== null && listing[selectedLeaderIndex] && (
+        <CustomModal
+          open={selectedLeaderIndex !== null}
+          onClose={() => setSelectedLeaderIndex(null)}
+          className="max-w-md p-6 bg-[#fbf6e8] border border-[#0D3829]/10 shadow-2xl"
+        >
+          <div className="flex flex-col items-center text-center pt-2">
+            <div className="relative w-36 h-48 rounded-2xl bg-[#ACC78C]/25 border border-[#0D3829]/10 overflow-hidden flex items-end justify-center mb-4">
+              <Image
+                src={
+                  listing[selectedLeaderIndex].files?.desktop_file ||
+                  "/pages/about-us/leadership/leader1.webp"
+                }
+                alt={listing[selectedLeaderIndex].name || "Leader image"}
+                width={240}
+                height={300}
+                className="w-auto h-full object-contain object-bottom drop-shadow-md select-none"
+              />
+            </div>
+
+            <h3 className="font-heading text-2xl text-[#1E382B] leading-tight font-normal">
+              {listing[selectedLeaderIndex].name}
+            </h3>
+
+            {listing[selectedLeaderIndex].designation && (
+              <span className="mt-1.5 px-3.5 py-1 text-xs font-medium font-body text-[#1E382B">
+                {listing[selectedLeaderIndex].designation}
+              </span>
+            )}
+
+            <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#0D3829]/20 to-transparent my-4" />
+
+            {listing[selectedLeaderIndex].desc && (
+              <p className="font-body text-sm leading-relaxed text-[#5A6C54]">
+                {listing[selectedLeaderIndex].desc}
+              </p>
+            )}
+          </div>
+        </CustomModal>
+      )}
     </section>
   );
 };
