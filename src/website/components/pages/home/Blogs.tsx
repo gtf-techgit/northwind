@@ -81,16 +81,16 @@ const Blogs = ({ data }: BlogsProps) => {
   }, [activeTab]);
 
   const handleTabChange = (id: BlogTab) => {
-  if (id === activeTab) return;
+    if (id === activeTab) return;
 
-  if ("startViewTransition" in document) {
-    document.startViewTransition(() => {
+    if ("startViewTransition" in document) {
+      document.startViewTransition(() => {
+        setActiveTab(id);
+      });
+    } else {
       setActiveTab(id);
-    });
-  } else {
-    setActiveTab(id);
-  }
-};
+    }
+  };
 
   return (
     <section
@@ -120,8 +120,8 @@ const Blogs = ({ data }: BlogsProps) => {
                 type="button"
                 onClick={() => handleTabChange(tab.id)}
                 className={`relative z-10 cursor-pointer rounded-full font-body px-8 py-3 pera tracking-wide transition-colors ${activeTab === tab.id
-                    ? "text-secondary!"
-                    : "text-primary/70 hover:text-primary"
+                  ? "text-secondary!"
+                  : "text-primary/70 hover:text-primary"
                   }`}
               >
                 <span className="text-slide">
@@ -131,7 +131,7 @@ const Blogs = ({ data }: BlogsProps) => {
               </button>
             ))}
           </div>
-          
+
         </div>
 
         <div className="mt-10 overflow-hidden">
@@ -153,15 +153,17 @@ const Blogs = ({ data }: BlogsProps) => {
                       unoptimized
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    <span className="absolute right-4 top-4 rounded-full bg-black/50 px-3 py-1 text-xs font-body text-white backdrop-blur-sm">
+                      {item.date}
+                    </span>
                   </ZoomOut>
                 </div>
-                <div className="flex justify-between items-center mt-4 md:mt-6">
+                <div className=" mt-4 md:mt-6">
                   <h3 className=" text-[14px]  md:text-[18px] max-w-80 font-semibold font-body text-primary">
-                  {item.title}
-                </h3>
-                  <p className="text-sm font-body ">{item.date}</p>
+                    {item.title}
+                  </h3>
                 </div>
-                
+
                 <p className="mt-3 line-clamp-2 font-body pera leading-relaxed ">
                   {item.description}
                 </p>
@@ -170,7 +172,7 @@ const Blogs = ({ data }: BlogsProps) => {
           </div>
         </div>
         <div className="w-full flex justify-center mt-5">
-          <Button className="mt-6 font-semibold cursor-pointer">{data.buttonText}</Button>
+          <Button href="/blogs" className="mt-6 font-semibold cursor-pointer" >{data.buttonText}</Button>
         </div>
       </div>
     </section>
