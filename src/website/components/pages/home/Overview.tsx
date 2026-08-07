@@ -50,7 +50,7 @@ useLayoutEffect(() => {
         {
           y: "-150%",
           ease: "none",
-          duration: 1.4,
+          duration: 0.7,
         },
         0
       );
@@ -60,7 +60,7 @@ useLayoutEffect(() => {
         {
           y: "-50%",
           ease: "none",
-          duration: 2,
+          duration: 1.2,
         },
         0
       );

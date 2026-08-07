@@ -1,7 +1,9 @@
 export interface HeroMedia {
   type: "image" | "video";
-  desktop: string;
-  mobile?: string;
+  files: {
+    desktop_file: string;
+    mobile_file?: string;
+  };
   poster?: string;
   alt?: string;
 }
@@ -28,4 +30,19 @@ export interface KeyBenefitsData {
   image: string;
   imageAlt?: string;
   items: KeyBenefitItem[];
+}
+
+// Section Header
+export interface SectionBasicDetailsProps {
+  title?: {
+    heading: string;
+  };
+  description?: {
+    desc: string;
+  };
+  files?: {
+    desktop_file: string;
+    mobile_file?: string;
+  };
+  listing?: any;
 }

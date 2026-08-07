@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* This is for 2xl breakpoint (macbook and desktop) */
+@theme {
+  --breakpoint-2xl: 90rem;
+}
+
 /* ===========================
    Design Tokens
 =========================== */
@@ -31,12 +36,10 @@
   --overlay-light: rgb(255 255 255 / 5%);
 
   /* Gradient */
-  --gradient-primary: linear-gradient(
-    180deg,
-    rgb(255 255 255 / 0%) 0%,
-    rgb(255 255 255 / 5%) 70%,
-    rgb(0 0 0 / 30%) 100%
-  );
+  --gradient-primary: linear-gradient(180deg,
+      rgb(255 255 255 / 0%) 0%,
+      rgb(255 255 255 / 5%) 70%,
+      rgb(0 0 0 / 30%) 100%);
 
   /* Shadows */
   --shadow-sm: 0 4px 10px rgb(0 0 0 / 5%);
@@ -44,8 +47,8 @@
   --shadow-lg: 0 20px 60px rgb(0 0 0 / 15%);
 
   /* Radius */
-  --radius-sm: .5rem;
-  --radius-md: .75rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
   --radius-lg: 1.25rem;
   --radius-xl: 2rem;
 
@@ -82,7 +85,7 @@ body {
   font-size: 14px;
 }
 
- /* Typography Utilities */
+/* Typography Utilities */
 
 .font-heading {
   font-family: var(--font-branley), serif;
@@ -92,7 +95,7 @@ body {
   font-family: var(--font-raleway), sans-serif;
 }
 
- /* Text Colors */
+/* Text Colors */
 
 .text-primary {
   color: var(--color-text-primary);
@@ -101,6 +104,7 @@ body {
 .text-secondary {
   color: var(--color-text-secondary);
 }
+
 .text-accent {
   color: var(--color-text-accent);
 }
@@ -117,7 +121,7 @@ body {
   color: var(--color-secondary);
 }
 
- /* Backgrounds */
+/* Backgrounds */
 
 .bg-page {
   background: var(--color-background);
@@ -131,8 +135,6 @@ body {
   background: var(--color-secondary);
 }
 
-
-
 .bg-white {
   background: var(--color-white);
 }
@@ -141,7 +143,7 @@ body {
   background: var(--gradient-primary);
 }
 
- /* Borders */
+/* Borders */
 
 .border-default {
   border: 1px solid var(--color-border);
@@ -151,7 +153,7 @@ body {
   border: 1px solid var(--color-border-light);
 }
 
- /* Shadows */
+/* Shadows */
 
 .shadow-sm-custom {
   box-shadow: var(--shadow-sm);
@@ -165,7 +167,7 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
- /* Radius */
+/* Radius */
 
 .rounded-sm-custom {
   border-radius: var(--radius-sm);
@@ -191,36 +193,62 @@ body {
   display: none;
 }
 
- /* Layout */
-
+/* Layout */
+/* 
 .container-custom {
   width: min(100% - 14rem, var(--container));
   margin-inline: auto;
+
+} */
+
+/* Layout */
+
+.container-custom {
+  max-width: 1530px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 60px;
 }
 
 .section-padding {
   padding-block: 80px;
 }
+
 .section-toppadding {
   padding-top: 80px;
 }
 
-.pera{
+.pera {
   font-size: 14px;
 }
 
+/* Macbook */
+@media (max-width: 1400px) {
+  .container-custom {
+    max-width: 1400px;
+  }
+}
+
+/* small screens (1280px) */
+@media (max-width: 1280px) {
+  .container-custom {
+    max-width: 1200px;
+  }
+}
+
 @media (max-width: 768px) {
-
   body {
-  font-size: 12px;
-}
+    font-size: 12px;
+  }
 
-.pera{
-  font-size: 12px;
-}
+  .pera {
+    font-size: 12px;
+  }
+
   .section-padding {
     padding-block: 50px;
   }
+
   .section-toppadding {
     padding-top: 50px;
   }
@@ -286,11 +314,12 @@ input[type="range"].range-slider::-moz-range-thumb {
 /* Effect  */
 .text-slide {
   position: relative;
-  display: block;          /* inline-block -> block */
+  display: block;
+  /* inline-block -> block */
   overflow: hidden;
   line-height: 1.5;
-  height: auto;    
-  padding-block: 2px;     
+  height: auto;
+  padding-block: 2px;
 }
 
 .text-slide span {
@@ -299,7 +328,7 @@ input[type="range"].range-slider::-moz-range-thumb {
   justify-content: center;
   height: 1em;
   line-height: 1;
-  transition: transform .6s cubic-bezier(.16,1,.3,1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
@@ -319,6 +348,7 @@ button:hover .text-slide span {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -328,6 +358,7 @@ button:hover .text-slide span {
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -344,4 +375,3 @@ button:hover .text-slide span {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
